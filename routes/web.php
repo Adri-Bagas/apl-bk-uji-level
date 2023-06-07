@@ -41,7 +41,7 @@ Route::middleware([
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
 Route::get('/jurusan/create',[JurusanController::class,'create']);
 Route::delete('/jurusan/delete',[JurusanController::class,'destroy']);
-Route::get('/jurusan/{id}/edit',[JurusanController::class,'edit']);
+Route::get('/jurusan/edit/{id}',[JurusanController::class,'edit']);
 Route::put('/jurusan/{id}',[JurusanController::class,'update']);
 Route::get('/jurusan/{id}', [JurusanController::class, 'show']);
 // KELAS

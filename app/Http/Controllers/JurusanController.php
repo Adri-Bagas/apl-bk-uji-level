@@ -13,7 +13,9 @@ class JurusanController extends Controller
     public function index()
     {
         $jurusan = Jurusan::all();
-        return response()->json($jurusan);
+        return view('dashboards.pages.jurusan.index', compact(
+            'jurusan'
+        ));
     }
 
     /**

@@ -5,8 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Modernize Free</title>
+
     <link rel="shortcut icon" type="image/png" href="{{ asset('dashboards') }}/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ asset('dashboards') }}/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
+
 </head>
 
 <body>
@@ -26,6 +29,9 @@
     <script src="{{ asset('dashboards') }}/js/sidebarmenu.js"></script>
     <script src="{{ asset('dashboards') }}/js/app.min.js"></script>
     <script src="{{ asset('dashboards') }}/libs/simplebar/dist/simplebar.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 </body>
+
+@yield('scriptJS')
 
 </html>
