@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Ninito", sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #efefef;
+}
+.slide-container{
+    max-width: 1120px;
+    width: 100%;background-color: #265DF2;
+    padding: 40px 0;
+}
+.slide-content{
+    margin: 0 40px;
+}
+.card{
+
+    height: 573px;
+    border-radius: 25px;
+    background-color: #fff;
+}
+.image-content,
+.card-content{
+    display: flex;
+    padding: 10px 14px;
+    flex-direction: column;
+    align-items: center;
+    list-style: none;
+}
+.image-content{
+    position: relative;
+    row-gap: 5px;
+}
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background: #b6b6b6;
+    border-radius: 25px 25px 0 0;
+
+}
+.card-image{
+    position: relative;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;  
+    background: #fff;
+    padding: 3px;
+}
+.card-image .card-img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;  
+}
+.name{
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+.profession{
+    font-size: 18px;
+    font-weight: 500;
+    color: black;
+}
+.button{
+    border: none;
+    font-size: 16px;
+    color: white;
+    background-color: #265DF2;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.button:hover{
+    background: #006DB1;
+}
+
