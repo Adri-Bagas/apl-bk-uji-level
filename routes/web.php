@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +28,19 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+
+// JURUSAN
+Route::get('/jurusan', [JurusanController::class, 'index']);
+Route::get('',[JurusanController::class,'create']);
+Route::delete('',[JurusanController::class,'destroy']);
+Route::get('',[JurusanController::class,'edit']);
+Route::put('',[JurusanController::class,'update']);
+// KELAS
+Route::get('/kelas', [KelasController::class, 'index']);
+Route::get('',[KelasController::class,'create']);
+Route::delete('',[KelasController::class,'destroy']);
+Route::get('',[KelasController::class,'edit']);
+Route::put('',[KelasController::class,'update']);
+
