@@ -22,7 +22,13 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+
+    //ROUTE DASHBOARD JANGAN DI PAKE
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
+
+    Route::get('/anjing', function () {
+        return view('dashboards.pages.main');
+    });
 });
