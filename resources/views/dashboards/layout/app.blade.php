@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Modernize Free</title>
-    <link rel="shortcut icon" type="image/png" href="{{ asset('dashboard') }}/images/logos/favicon.png" />
-    <link rel="stylesheet" href="{{ asset('dashboard') }}/css/styles.min.css" />
+    <link rel="shortcut icon" type="image/png" href="{{ asset('dashboards') }}/images/logos/favicon.png" />
+    <link rel="stylesheet" href="{{ asset('dashboards') }}/css/styles.min.css" />
 </head>
 
 <body>
@@ -21,11 +21,11 @@
             @yield('main-content')
         </div>
     </div>
-    <script src="{{ asset('dashboard') }}/libs/jquery/dist/jquery.min.js"></script>
-    <script src="{{ asset('dashboard') }}/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ asset('dashboard') }}/js/sidebarmenu.js"></script>
-    <script src="{{ asset('dashboard') }}/js/app.min.js"></script>
-    <script src="{{ asset('dashboard') }}/libs/simplebar/dist/simplebar.js"></script>
+    <script src="{{ asset('dashboards') }}/libs/jquery/dist/jquery.min.js"></script>
+    <script src="{{ asset('dashboards') }}/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('dashboards') }}/js/sidebarmenu.js"></script>
+    <script src="{{ asset('dashboards') }}/js/app.min.js"></script>
+    <script src="{{ asset('dashboards') }}/libs/simplebar/dist/simplebar.js"></script>
 </body>
 
 </html>

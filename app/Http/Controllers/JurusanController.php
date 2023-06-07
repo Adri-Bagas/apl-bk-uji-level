@@ -21,7 +21,7 @@ class JurusanController extends Controller
      */
     public function create()
     {
-        $jurusan = Jurusan::all();
+    
         return view('',[''=> $jurusan]);
     }
 
@@ -35,8 +35,8 @@ class JurusanController extends Controller
         ]);
         $input = $request->all();
         Jurusan::create($input);
-        return redirect('')
-        -> with('success','Data Berhasil Di Tambahkan');
+        return redirect('/')
+        ->with('success','Data Berhasil Di Tambahkan');
     }
 
     /**
@@ -67,8 +67,8 @@ class JurusanController extends Controller
         ]);
 
         $jurusan->update($request->all());
-        return redirect('')
-        -> with('success','Data Berhasil Di Perbarui');
+        return redirect('/')
+        ->with('success','Data Berhasil Di Perbarui');
     }
 
     /**
@@ -78,7 +78,7 @@ class JurusanController extends Controller
     {
         $jurusan = Jurusan::findOrFail($id);
         $jurusan -> delete();
-        return redirect('')
+        return redirect('/')
         -> with('success','Data Berhasil Di Hapus');
     }
 }

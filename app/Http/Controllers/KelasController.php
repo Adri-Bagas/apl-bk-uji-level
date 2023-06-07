@@ -27,8 +27,7 @@ class KelasController extends Controller
      */
     public function create()
     {
-        $kelas = Kelas::all();
-        return view('',[''=> $kelas]);
+        return view('');
     }
 
     /**
@@ -43,8 +42,8 @@ class KelasController extends Controller
         ]);
         $input = $request->all();
         Kelas::create($input);
-        return redirect('')
-        -> with('success','Data Berhasil Di Tambahkan');
+        return redirect('/')
+        ->with('success','Data Berhasil Di Tambahkan');
     }
 
     /**
@@ -77,7 +76,7 @@ class KelasController extends Controller
         ]);
 
         $kelas->update($request->all());
-        return redirect('')
+        return redirect('/')
         ->with('success','Data Berhasil Di Perbarui');
         
     }
@@ -89,7 +88,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();
-        return redirect('')
+        return redirect('/')
         -> with('success','Data Berhasil Di Hapus');
 
     }

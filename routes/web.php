@@ -30,23 +30,25 @@ Route::middleware([
     //     return view('dashboard');
     // })->name('dashboard');
 
-    Route::get('/anjing', function () {
+    Route::get('/dashboard', function () {
         return view('dashboards.pages.main');
-    });
+    })->name('dashboard');
 });
 
 
 
 // JURUSAN
-Route::get('/jurusan', [JurusanController::class, 'index']);
-Route::get('',[JurusanController::class,'create']);
-Route::delete('',[JurusanController::class,'destroy']);
-Route::get('',[JurusanController::class,'edit']);
-Route::put('',[JurusanController::class,'update']);
+Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
+Route::get('/jurusan/create',[JurusanController::class,'create']);
+Route::delete('/jurusan/delete',[JurusanController::class,'destroy']);
+Route::get('/jurusan/{id}/edit',[JurusanController::class,'edit']);
+Route::put('/jurusan/{id}',[JurusanController::class,'update']);
+Route::get('/jurusan/{id}', [JurusanController::class, 'show']);
 // KELAS
-Route::get('/kelas', [KelasController::class, 'index']);
-Route::get('',[KelasController::class,'create']);
-Route::delete('',[KelasController::class,'destroy']);
-Route::get('',[KelasController::class,'edit']);
-Route::put('',[KelasController::class,'update']);
+Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
+Route::get('/kelas/create',[KelasController::class,'create']);
+Route::delete('/kelas/delete',[KelasController::class,'destroy']);
+Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
+Route::put('/kelas/{id}',[KelasController::class,'update']);
+Route::get('/kelas/{id}', [KelasController::class, 'show']);
 
