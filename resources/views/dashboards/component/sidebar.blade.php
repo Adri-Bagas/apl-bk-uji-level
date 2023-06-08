@@ -46,6 +46,14 @@
                         <span class="hide-menu">Kelas</span>
                     </a>
                 </li>
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('guru') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Guru</span>
+                    </a>
+                </li>
                 
             </ul>
         </nav>
