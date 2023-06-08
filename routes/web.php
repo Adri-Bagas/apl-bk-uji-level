@@ -44,6 +44,7 @@ Route::delete('/jurusan/delete',[JurusanController::class,'destroy']);
 Route::get('/jurusan/edit/{id}',[JurusanController::class,'edit']);
 Route::put('/jurusan/{id}',[JurusanController::class,'update']);
 Route::get('/jurusan/{id}', [JurusanController::class, 'show']);
+
 // KELAS
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas/create',[KelasController::class,'create']);

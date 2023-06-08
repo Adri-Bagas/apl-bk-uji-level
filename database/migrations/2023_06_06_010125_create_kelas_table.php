@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama');
             $table->foreignId('walas_id')->constrained('gurus', 'id');
             $table->foreignId('bk_id')->constrained('gurus', 'id');
+            $table->foreignId('jurusan_id')->constrained('jurusans', 'id');
             $table->timestamps();
         });
     }
