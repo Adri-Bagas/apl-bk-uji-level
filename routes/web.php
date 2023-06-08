@@ -50,7 +50,7 @@ Route::get('/jurusan/show{id}', [JurusanController::class, 'show']);
 // KELAS
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas/create',[KelasController::class,'create']);
-Route::delete('/kelas/delete',[KelasController::class,'destroy']);
+Route::delete('/kelas/delete/{id}',[KelasController::class,'destroy']);
 Route::post('/kelas/create', [KelasController::class, 'store']);
 Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
 Route::put('/kelas/{id}',[KelasController::class,'update']);
