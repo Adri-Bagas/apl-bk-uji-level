@@ -28,7 +28,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user1->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user1->assignRole('bk');
@@ -44,7 +43,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user2->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user2->assignRole('bk');
@@ -60,7 +58,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user3->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user3->assignRole('bk');
@@ -75,7 +72,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user4->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user4->assignRole('bk');
@@ -90,7 +86,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user5->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user5->assignRole('bk');
@@ -109,7 +104,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user6->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user6->assignRole('walas');
@@ -124,7 +118,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user7->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user7->assignRole('walas');
@@ -139,7 +132,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user8->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user8->assignRole('walas');
@@ -154,7 +146,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user9->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user9->assignRole('walas');
@@ -169,7 +160,6 @@ class GurusSeeder extends Seeder
         Guru::create([
             'user_id' => $user10->id,
             'no_telepon' => $faker->phoneNumber(),
-            'nik' => $faker->randomNumber(5, true),
         ]);
 
         $user10->assignRole('walas');

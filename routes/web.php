@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,7 @@ Route::delete('/jurusan/delete/{id}',[JurusanController::class,'destroy']);
 Route::get('/jurusan/edit/{id}',[JurusanController::class,'edit']);
 Route::put('/jurusan/edit/{id}',[JurusanController::class,'update']);
 Route::get('/jurusan/show{id}', [JurusanController::class, 'show']);
+
 // KELAS
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas/create',[KelasController::class,'create']);
@@ -54,3 +56,10 @@ Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
 Route::put('/kelas/{id}',[KelasController::class,'update']);
 Route::get('/kelas/{id}', [KelasController::class, 'show']);
 
+// GURU
+Route::get('/guru', [GuruController::class, 'index'])->name('guru');
+Route::get('/guru/create',[GuruController::class,'create']);
+Route::delete('/guru/delete',[GuruController::class,'destroy']);
+Route::get('/guru/edit/{id}',[GuruController::class,'edit']);
+Route::put('/guru/{id}',[GuruController::class,'update']);
+Route::get('/guru/{id}', [GuruController::class, 'show']);

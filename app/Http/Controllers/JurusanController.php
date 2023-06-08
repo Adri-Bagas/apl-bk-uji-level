@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class JurusanController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:bk|walas|admin']);
+    }
+
     /**
      * Display a listing of the resource.
      */

@@ -28,7 +28,7 @@ class SiswaSeeder extends Seeder
                 'user_id' => $user->id,
                 'kelas_id' => $faker->numberBetween(1, 5),
                 'no_telepon' => $faker->phoneNumber(),
-                'nik' => $faker->randomNumber(5, true),
+                'nipd' => $faker->randomNumber(5, true),
                 'nisn' => $faker->randomNumber(5, true),
             ]);
 
