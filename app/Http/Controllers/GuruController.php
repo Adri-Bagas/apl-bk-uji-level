@@ -24,7 +24,7 @@ class GuruController extends Controller
      */
     public function create()
     {
-        return view('stuff');
+        return view('dashboards.pages.guru.create');
     }
 
     /**
