@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use Illuminate\Support\Facades\Route;
@@ -53,3 +54,10 @@ Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
 Route::put('/kelas/{id}',[KelasController::class,'update']);
 Route::get('/kelas/{id}', [KelasController::class, 'show']);
 
+// GURU
+Route::get('/guru', [GuruController::class, 'index'])->name('guru');
+Route::get('/guru/create',[GuruController::class,'create']);
+Route::delete('/guru/delete',[GuruController::class,'destroy']);
+Route::get('/guru/edit/{id}',[GuruController::class,'edit']);
+Route::put('/guru/{id}',[GuruController::class,'update']);
+Route::get('/guru/{id}', [GuruController::class, 'show']);

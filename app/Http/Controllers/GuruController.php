@@ -16,9 +16,7 @@ class GuruController extends Controller
     public function index()
     {
         $gurus = Guru::all();
-        return response()->json(
-            $gurus
-        );
+        return view('dashboards.pages.guru.index', compact('gurus'));
     }
 
     /**
