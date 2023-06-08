@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guru;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class KelasController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        return response()->json($kelas);
+        return view('dashboards.pages.kelas.index', compact(
+            'kelas'
+        ));
 
         // if(!$kelas){
         //     return response()->json([
@@ -27,7 +30,10 @@ class KelasController extends Controller
      */
     public function create()
     {
-        return view('');
+        $guru = Guru::all();
+        return view('dashboards.pages.kelas.create', compact(
+            'guru'
+        ));
     }
 
     /**
@@ -42,7 +48,7 @@ class KelasController extends Controller
         ]);
         $input = $request->all();
         Kelas::create($input);
-        return redirect('/')
+        return redirect('kelas')
         ->with('success','Data Berhasil Di Tambahkan');
     }
 
@@ -51,7 +57,8 @@ class KelasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $kelas = Kelas::findOrFail($id);
+        return view('dashboards.pages.kelas.show', ['kelasss' => $kelas]);
     }
 
     /**
@@ -59,8 +66,8 @@ class KelasController extends Controller
      */
     public function edit(string $id)
     {
-        $kelas = Kelas::findOrFail($id);
-        return view('',[]);
+        $kelas =Kelas::findOrFail($id);
+        return view('dashboards.pages.kelas.edit',['jurus'=>$kelas]);
     }
 
     /**
@@ -76,7 +83,7 @@ class KelasController extends Controller
         ]);
 
         $kelas->update($request->all());
-        return redirect('/')
+        return redirect('/kelas')
         ->with('success','Data Berhasil Di Perbarui');
         
     }
@@ -88,7 +95,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();
-        return redirect('/')
+        return redirect('/kelas')
         -> with('success','Data Berhasil Di Hapus');
 
     }

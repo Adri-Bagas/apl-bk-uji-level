@@ -24,7 +24,8 @@ class JurusanController extends Controller
     public function create()
     {
     
-        return view('',[''=> $jurusan]);
+        $jurusan = Jurusan::all();
+        return view('dashboards.pages.jurusan.create',['jurus'=> $jurusan]);
     }
 
     /**
@@ -37,7 +38,7 @@ class JurusanController extends Controller
         ]);
         $input = $request->all();
         Jurusan::create($input);
-        return redirect('/')
+        return redirect('jurusan')
         ->with('success','Data Berhasil Di Tambahkan');
     }
 
@@ -46,7 +47,8 @@ class JurusanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+        return view('dashboards.pages.jurusan.show', ['jurus' => $jurusan]);
     }
 
     /**
@@ -54,8 +56,8 @@ class JurusanController extends Controller
      */
     public function edit(string $id)
     {
-        $jurusan = Jurusan::findOrFail($id);
-        return view('',[]);
+        $jurusan =Jurusan::findOrFail($id);
+        return view('dashboards.pages.jurusan.edit',['jurus'=>$jurusan]);
     }
 
     /**
@@ -69,7 +71,7 @@ class JurusanController extends Controller
         ]);
 
         $jurusan->update($request->all());
-        return redirect('/')
+        return redirect('/jurusan')
         ->with('success','Data Berhasil Di Perbarui');
     }
 
@@ -80,7 +82,7 @@ class JurusanController extends Controller
     {
         $jurusan = Jurusan::findOrFail($id);
         $jurusan -> delete();
-        return redirect('/')
+        return redirect('/jurusan')
         -> with('success','Data Berhasil Di Hapus');
     }
 }
