@@ -15,4 +15,12 @@ class Kelas extends Model
         'walas_id',
         'bk_id'
     ];
+
+    public function walas(){
+        return $this->belongsTo(Guru::class, 'walas_id');
+    }
+
+    public function bk(){
+        return $this->belongsTo(Guru::class, 'bk_id');
+    }
 }

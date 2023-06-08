@@ -41,15 +41,17 @@ Route::middleware([
 // JURUSAN
 Route::get('/jurusan', [JurusanController::class, 'index'])->name('jurusan');
 Route::get('/jurusan/create',[JurusanController::class,'create']);
-Route::delete('/jurusan/delete',[JurusanController::class,'destroy']);
+Route::post('/jurusan/create', [JurusanController::class, 'store']);
+Route::delete('/jurusan/delete/{id}',[JurusanController::class,'destroy']);
 Route::get('/jurusan/edit/{id}',[JurusanController::class,'edit']);
-Route::put('/jurusan/{id}',[JurusanController::class,'update']);
-Route::get('/jurusan/{id}', [JurusanController::class, 'show']);
+Route::put('/jurusan/edit/{id}',[JurusanController::class,'update']);
+Route::get('/jurusan/show{id}', [JurusanController::class, 'show']);
 
 // KELAS
 Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas/create',[KelasController::class,'create']);
 Route::delete('/kelas/delete',[KelasController::class,'destroy']);
+Route::post('/kelas/create', [KelasController::class, 'store']);
 Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
 Route::put('/kelas/{id}',[KelasController::class,'update']);
 Route::get('/kelas/{id}', [KelasController::class, 'show']);
