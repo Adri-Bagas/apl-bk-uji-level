@@ -25,8 +25,9 @@
                     </div>
                   <table>
                     <tr>
-                    <td><button type="submit" class="btn btn-primary" href="">Submit</button></td>
-                    <td ><a style="margin-left: 20px" class="btn btn-primary" href="/jurusan">Cancel</a></td>
+                        
+                        <td ><a style="margin-left: 20px," class="btn btn-warning" href="/jurusan">Cancel</a></td>
+                        <td><button type="submit" class="btn btn-primary" style="margin-left:20px">Submit</button></td>
                     </tr>
                   </table>
                   </form>

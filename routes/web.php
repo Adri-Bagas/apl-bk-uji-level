@@ -3,6 +3,8 @@
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
+use App\Http\Controllers\SiswaController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -52,14 +54,20 @@ Route::get('/kelas', [KelasController::class, 'index'])->name('kelas');
 Route::get('/kelas/create',[KelasController::class,'create']);
 Route::delete('/kelas/delete/{id}',[KelasController::class,'destroy']);
 Route::post('/kelas/create', [KelasController::class, 'store']);
-Route::get('/kelas/{id}/edit',[KelasController::class,'edit']);
-Route::put('/kelas/{id}',[KelasController::class,'update']);
+Route::get('/kelas/edit/{id}',[KelasController::class,'edit']);
+Route::put('/kelas/edit/{id}',[KelasController::class,'update']);
 Route::get('/kelas/{id}', [KelasController::class, 'show']);
 
 // GURU
 Route::get('/guru', [GuruController::class, 'index'])->name('guru');
 Route::get('/guru/create',[GuruController::class,'create']);
-Route::delete('/guru/delete',[GuruController::class,'destroy']);
+Route::post('/guru/create',[GuruController::class,'store']);
+Route::delete('/guru/delete/{id}',[GuruController::class,'destroy']);
 Route::get('/guru/edit/{id}',[GuruController::class,'edit']);
 Route::put('/guru/{id}',[GuruController::class,'update']);
 Route::get('/guru/{id}', [GuruController::class, 'show']);
+
+
+// SISWA 
+Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
+Route::get('/siswa/create',[SiswaController::class,'create']);

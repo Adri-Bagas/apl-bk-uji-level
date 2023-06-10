@@ -9,7 +9,9 @@
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
                     <tr>
+                        <th class="th-sm">Nomer</th>
                         <th class="th-sm">Name</th>
+                        <th class="th-sm">Jurusan</th>
                         <th class="th-sm">Walas</th>
                         <th class="th-sm">Bk</th>
                         <th class="th-sm">Action</th>
@@ -18,7 +20,9 @@
                 <tbody>
                     @foreach($kelas as $kelasss)
                     <tr>
+                        <td>{{ $loop->iteration }}</td>
                         <td>{{ $kelasss->nama }}</td>
+                        <td>{{ $kelasss->jurusan->nama }}</td>
                         <td>{{ $kelasss->walas->user->name }}</td>
                         <td>{{ $kelasss->bk->user->name }}</td>
                         

@@ -16,32 +16,33 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="/guru/create" method="POST">
+                <form action="{{ url('guru',$guru->user->id) }}" method="POST">
                     @csrf
+                    @method('PUT')
                   <div class="mb-3" >
                       <label for="exampleInputEmail1" class="form-label">Nama</label>
-                      <input type="text" name="name" class="form-control" placeholder=" Masukkan Nama" value="{{ old('nama') }}">
+                      <input type="text" name="name" class="form-control" placeholder=" Masukkan Nama" value="{{$guru->user->name}}">
                     </div>
 
                     <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email') }}">
+                        <input type="text" name="email" class="form-control" placeholder="Masukkan Email" value="{{$guru->user->email}}">
                       </div>
 
-                      <div class="mb-3" >
+                      {{-- <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Password</label>
-                        <input type="text" name="password" class="form-control" placeholder="Masukkan Password" value="*123456*" readonly>
-                      </div>
+                        <input type="password" name="password" class="form-control" placeholder="Masukkan Password" value="*123456*" readonly>
+                      </div> --}}
 
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">No Telepon</label>
-                        <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon" value="{{ old('no_telepon') }}">
+                        <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon" value="{{ $guru->no_telepon}}">
                       </div>
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Roles</label>
                             <select class="form-select" name="roles[]" id="roles" multiple>
-                                <option value="bk">BK</option>
-                                <option value="walas">Walas</option>
+                                <option value="bk" {{ in_array("bk", $roles) ? 'selected' : '' }}>BK</option>
+                                <option value="walas" {{ in_array("walas", $roles) ? 'selected' : '' }}>Walas</option>
                           </select>
                       </div>
                   <table>
