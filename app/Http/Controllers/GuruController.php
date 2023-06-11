@@ -56,9 +56,10 @@ class GuruController extends Controller
             $user->assignRole($roles);
         }
 
-        return response()->json(
-            'berhasil'
-        );
+        return redirect('/guru');
+        // return response()->json(
+        //     'berhasil'
+        // );
     }
 
     /**
@@ -76,7 +77,8 @@ class GuruController extends Controller
     public function edit(string $id)
     {
         $guru = Guru::find($id);
-        return view('stuff', compact('guru'));
+        $roles = $guru->user->getRoleNames()->toArray();
+        return view('dashboards.pages.guru.edit', compact('guru', 'roles'));
     }
 
     /**
@@ -93,7 +95,7 @@ class GuruController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            
             'no_telepon' => 'required',
             'roles' => 'required',
         ]);
@@ -101,18 +103,31 @@ class GuruController extends Controller
         $update = $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
             'profile_type' => 'guru'
         ]);
+
+        if(!$update){
+            return response()->json(
+                'Gagal'
+            );  
+        }
 
         $update2 = $profile->update([
             'user_id' => $user->id,
             'no_telepon' => $request->no_telepon,
         ]);
 
-        return response()->json(
-            'berhasil'
-        );
+        $user->syncRoles([]);
+
+        foreach($request->roles as $roles){
+            $user->assignRole($roles);
+        }
+        
+        $user->update($request->all());
+        return redirect('/guru')
+        ->with('success','Data Berhasil Di Perbarui');
+        
+        
     }
 
     /**
@@ -129,5 +144,8 @@ class GuruController extends Controller
         $profile->delete();
 
         $user->delete();
+
+        return redirect('/guru');
+        
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use id;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Kelas extends Model
 {
@@ -12,7 +13,8 @@ class Kelas extends Model
     protected $fillable = [
         'nama',
         'walas_id',
-        'bk_id'
+        'bk_id',
+        'jurusan_id'
     ];
 
     public function walas(){
@@ -21,6 +23,10 @@ class Kelas extends Model
 
     public function bk(){
         return $this->belongsTo(Guru::class, 'bk_id');
+    }
+
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class);
     }
 
     public function siswas(){

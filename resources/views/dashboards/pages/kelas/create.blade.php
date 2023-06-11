@@ -20,8 +20,19 @@
                     @csrf
                   <div class="mb-3" >
                       <label for="exampleInputEmail1" class="form-label">Nama</label>
-                      <input type="text" name="nama" class="form-control">
+                      <input type="text" name="nama" class="form-control" placeholder="Nama">
                     </div>
+
+                    <div class="mb-3" >
+                      <label for="exampleInputEmail1" class="form-label">Jurusan</label>
+                      <select class="form-select" name="jurusan_id" id="jurusan">
+                        @foreach($jurusan as $jurus)
+                        <option value="{{$jurus->id}}">{{$jurus->nama}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  
+                    
                     <div class="mb-3">
                       <label class="form-label">Walas Id</label>
                       <select class="form-select" name="walas_id" id="walas_id">
@@ -33,15 +44,16 @@
                   <div class="mb-3">
                     <label class="form-label">BK Id</label>
                     <select class="form-select" name="bk_id" id="bk_id">
-                      @foreach($guru as $item)
-                      <option value="{{$item->id}}">{{$item->user->name}}</option>
+                      @foreach($bk as $item)
+                      <option value="{{$item->guru->id}}">{{$item->name}}</option>
                       @endforeach
                     </select>
                   </div>
                   <table>
                     <tr>
-                    <td><button type="submit" class="btn btn-primary">Submit</button></td>
-                    <td ><a style="margin-left: 20px" class="btn btn-primary" href="/kelas">Cancel</a></td>
+                    
+                    <td ><a style="margin-left: 20px," class="btn btn-warning" href="/kelas">Cancel</a></td>
+                    <td><button type="submit" class="btn btn-primary" style="margin-left:20px">Submit</button></td>
                     </tr>
                   </table>
                   </form>

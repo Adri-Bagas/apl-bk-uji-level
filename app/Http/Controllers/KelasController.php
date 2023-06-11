@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guru;
+use App\Models\Jurusan;
 use App\Models\Kelas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -31,8 +33,21 @@ class KelasController extends Controller
     public function create()
     {
         $guru = Guru::all();
+        $jurusan = Jurusan::all();
+        $bk = User::role('bk')->get();
+
+        // $bksss = [];
+
+        // foreach($bk as $bks){
+        //     array_push($bksss, [$bks, $bks->guru]);
+        // }
+        // return $bksss;
+
+
         return view('dashboards.pages.kelas.create', compact(
-            'guru'
+            'guru',
+            'jurusan',
+            'bk',
         ));
     }
 
@@ -44,10 +59,16 @@ class KelasController extends Controller
         $request->validate([
             'nama' => 'required',
             'walas_id' => 'required', 
-            'bk_id' => 'required'
+            'bk_id' => 'required',
+            'jurusan_id' => ' required'
         ]);
-        $input = $request->all();
-        Kelas::create($input);
+      
+        Kelas::create([
+            'nama' => $request->nama,
+            'walas_id' => $request->walas_id,
+            'bk_id' => $request->bk_id,
+            'jurusan_id' => $request->jurusan_id,
+        ]);
         return redirect('kelas')
         ->with('success','Data Berhasil Di Tambahkan');
     }
@@ -66,8 +87,16 @@ class KelasController extends Controller
      */
     public function edit(string $id)
     {
-        $kelas =Kelas::findOrFail($id);
-        return view('dashboards.pages.kelas.edit',['kelasss'=>$kelas]);
+        $kelasss =Kelas::findOrFail($id);
+        $guru = Guru::all();
+        $jurusan = Jurusan::all();
+        $bk = User::role('bk')->get();
+        return view('dashboards.pages.kelas.edit', compact(
+            'kelasss',
+            'guru',
+            'jurusan',
+            'bk'
+        ));
     }
 
     /**
@@ -79,6 +108,7 @@ class KelasController extends Controller
         $request->validate([
             'nama',
             'walas_id',
+            'jurusan',
             'bk_id'
         ]);
 
