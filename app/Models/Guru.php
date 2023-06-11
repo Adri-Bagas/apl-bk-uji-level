@@ -16,4 +16,22 @@ class Guru extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function bk_kelas(){
+        return $this->hasOne(Kelas::class);
+    }
+
+    public function walas_kelas(){
+        return $this->hasOne(Kelas::class);
+    }
+
+    public function bk_konsuling(){
+        return $this->hasMany(KonsulingBK::class);
+    }
+
+    public function fotos(){
+        $foto = Foto::where('model_type', 'guru')->where('model_id', $this->id)->get();
+
+        return $foto;
+    }
 }

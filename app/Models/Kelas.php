@@ -11,7 +11,6 @@ class Kelas extends Model
     use HasFactory;
     protected $table = 'kelas';
     protected $fillable = [
-
         'nama',
         'walas_id',
         'bk_id',
@@ -30,5 +29,7 @@ class Kelas extends Model
         return $this->belongsTo(Jurusan::class);
     }
 
-    
+    public function siswas(){
+        return $this->hasMany(Siswa::class);
+    }
 }
