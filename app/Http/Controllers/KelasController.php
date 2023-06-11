@@ -67,7 +67,7 @@ class KelasController extends Controller
     public function edit(string $id)
     {
         $kelas =Kelas::findOrFail($id);
-        return view('dashboards.pages.kelas.edit',['jurus'=>$kelas]);
+        return view('dashboards.pages.kelas.edit',['kelasss'=>$kelas]);
     }
 
     /**

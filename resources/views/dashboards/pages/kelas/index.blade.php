@@ -22,9 +22,20 @@
                         <td>{{ $kelasss->walas->user->name }}</td>
                         <td>{{ $kelasss->bk->user->name }}</td>
                         
-                        <td> <a href="{{ url('kelas/edit', $kelasss->id) }}" class="btn btn-warning">Edit</a>
-                             <a href="{{ url('kelas/show', $kelasss->id) }}" class="btn btn-dark">Detail </a>
-                             <a href="{{ url('kelas/delete', $kelasss->id) }}" class="btn btn-danger">Hapus</a>
+                        <td> 
+                             {{-- <a href="{{ url('kelas/delete', $kelasss->id) }}" class="btn btn-danger">Hapus</a> --}}
+
+                             <div class="btn-form" style="display: flex">
+                                <a href="{{ url('kelas/edit', $kelasss->id) }}" class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Edit</a> 
+                                <form action="/kelas/delete/{{$kelasss->id}}" method="POST"
+                                    onsubmit="return confirm('Are You Sure?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-icon-text text-white btn-sm"
+                                        style="">Hapus</button>
+                                </form>
+                                {{-- <a href="{{ url('jurusan/edit', $jurus->id) }}" class="btn btn-warning  btn-sm" style="display: inline-block; margin-left: 10px">Edit</a>     --}}
+                            </div>
                         </td>
                         
                     </tr>
