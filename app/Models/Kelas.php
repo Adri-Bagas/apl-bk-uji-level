@@ -10,7 +10,6 @@ class Kelas extends Model
     use HasFactory;
     protected $table = 'kelas';
     protected $fillable = [
-
         'nama',
         'walas_id',
         'bk_id'
@@ -22,5 +21,9 @@ class Kelas extends Model
 
     public function bk(){
         return $this->belongsTo(Guru::class, 'bk_id');
+    }
+
+    public function siswas(){
+        return $this->hasMany(Siswa::class);
     }
 }

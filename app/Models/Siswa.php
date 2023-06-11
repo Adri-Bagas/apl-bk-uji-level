@@ -14,4 +14,8 @@ class Siswa extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
+    public function konsulings(){
+        return $this->belongsToMany(KonsulingBK::class, 'siswa_konsuling', 'siswa_id', 'konsuling_b_k_id');
+    }
 }
