@@ -77,10 +77,10 @@ Route::put('/siswa/{id}',[SiswaController::class,'update']);
 Route::get('/siswa/{id}', [SiswaController::class, 'show']);
 
 // SEMINAR
-Route::get('/seminar', [SiswaController::class, 'index'])->name('seminar');
-Route::get('/seminar/create',[SiswaController::class,'create']);
-Route::post('/seminar/create',[SiswaController::class,'store']);
-Route::delete('/seminar/delete/{id}',[SiswaController::class,'destroy']);
-Route::get('/seminar/edit/{id}',[SiswaController::class,'edit']);
-Route::put('/seminar/{id}',[SiswaController::class,'update']);
-Route::get('/seminar/{id}', [SiswaController::class, 'show']);
+Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar');
+Route::get('/seminar/create',[SeminarController::class,'create']);
+Route::post('/seminar/create',[SeminarController::class,'store']);
+Route::delete('/seminar/delete/{id}',[SeminarController::class,'destroy']);
+Route::get('/seminar/edit/{id}',[SeminarController::class,'edit']);
+Route::put('/seminar/{id}',[SeminarController::class,'update']);
+Route::get('/seminar/{id}', [SeminarController::class, 'show']);
