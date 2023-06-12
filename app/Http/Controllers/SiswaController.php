@@ -88,7 +88,8 @@ class SiswaController extends Controller
     public function show(string $id)
     {
         $siswa = Siswa::find($id);
-        return $siswa;
+        return view('dashboards.pages.siswa.show', compact('siswa'));
+
     }
 
     /**

@@ -22,7 +22,7 @@
                     @foreach($siswas as $siswa)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $siswa->user->name }}</td>
+                        <td><a href="{{ url('siswa', $siswa->id) }}" style="color: black;">{{ $siswa->user->name }}</a></td>
                         <td>{{ $siswa->user->email }}</td>
                         <td>{{ $siswa->nipd }}</td>
                         <td>{{ $siswa->kelas->nama}}</td>
