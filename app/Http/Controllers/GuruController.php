@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['role:admin']);
+    }
+
     /**
      * Display a listing of the resource.
      */

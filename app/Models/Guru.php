@@ -18,11 +18,11 @@ class Guru extends Model
     }
 
     public function bk_kelas(){
-        return $this->hasOne(Kelas::class);
+        return $this->hasMany(Kelas::class, 'bk_id');
     }
 
     public function walas_kelas(){
-        return $this->hasOne(Kelas::class);
+        return $this->hasOne(Kelas::class, 'walas_id');
     }
 
     public function bk_konsuling(){

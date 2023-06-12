@@ -46,6 +46,8 @@ class GurusSeeder extends Seeder
         ]);
 
         $user2->assignRole('bk');
+        $user2->assignRole('walas');
+        $user2->assignRole('admin');
 
 
         $user3 = User::create([

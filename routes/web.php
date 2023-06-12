@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
@@ -7,7 +8,6 @@ use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\TempatController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,16 +39,8 @@ Route::middleware([
     'verified'
 ])->group(function () {
 
-    //ROUTE DASHBOARD JANGAN DI PAKE
-    // Route::get('/dashboard', function () {
-    //     return view('dashboard');
-    // })->name('dashboard');
-
-    Route::get('/dashboard', function () {
-        return view('dashboards.pages.main');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
-
 
 
 // JURUSAN
@@ -87,7 +79,6 @@ Route::delete('/siswa/delete/{id}',[SiswaController::class,'destroy']);
 Route::get('/siswa/edit/{id}',[SiswaController::class,'edit']);
 Route::put('/siswa/{id}',[SiswaController::class,'update']);
 Route::get('/siswa/{id}', [SiswaController::class, 'show']);
-
 
 
 //  TEMPAT

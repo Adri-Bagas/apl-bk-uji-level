@@ -21,11 +21,18 @@ class KelasSeeder extends Seeder
         ]);  
 
         DB::table('kelas')->insert([
+            'nama' => 'TJKT 2',
+            'walas_id' => '2',
+            'bk_id' => '3',
+            'jurusan_id' => '5',
+        ]);
+        
+        DB::table('kelas')->insert([
             'nama' => 'ANIMASI 1',
             'walas_id' => '10',
             'bk_id' => '2',
             'jurusan_id' => '2',
-        ]); 
+        ]);
 
         DB::table('kelas')->insert([
             'nama' => 'BRF 1',

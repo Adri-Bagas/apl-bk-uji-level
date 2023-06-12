@@ -10,7 +10,7 @@ class JurusanController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['role:bk|walas|admin']);
+        $this->middleware(['role:admin']);
     }
 
     /**
