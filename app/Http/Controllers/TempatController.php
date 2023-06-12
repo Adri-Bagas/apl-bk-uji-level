@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Tempat;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,11 @@ class TempatController extends Controller
         $tempat = Tempat::create([
             'nama' => $request->nama
         ]);
+
+        ActivityLog::create([
+            'activity' => 'Tempat Baru "'.$tempat->nama.'" Di tambahkan Oleh '.auth()->user()->name
+        ]);
+
 
         return redirect('tempat');
     }
@@ -76,6 +82,10 @@ class TempatController extends Controller
             'nama' => $request->nama
         ]);
 
+        ActivityLog::create([
+            'activity' => 'Tempat  "'.$tempat->nama.'" Di edit Oleh '.auth()->user()->name
+        ]);
+
         return redirect('/tempat');
     }
 
@@ -87,6 +97,11 @@ class TempatController extends Controller
         $tempat = Tempat::find($id);
 
         $tempat->delete();
+
+
+        ActivityLog::create([
+            'activity' => 'Tempat  "'.$tempat->nama.'" Di Hapus Oleh '.auth()->user()->name
+        ]);
 
         return redirect('/tempat');
     }

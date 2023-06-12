@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Foto;
 use App\Models\Guru;
 use App\Models\User;
@@ -55,6 +56,11 @@ class GuruController extends Controller
             'user_id' => $user->id,
             'no_telepon' => $request->no_telepon,
         ]);
+
+        ActivityLog::create([
+            'activity' => 'Guru Baru "'.$guru->user->name.'" Ditambah oleh '.auth()->user()->name
+        ]);
+
 
         if($request->foto){
             $path = Storage::putFileAs(
@@ -154,6 +160,12 @@ class GuruController extends Controller
         foreach($request->roles as $roles){
             $user->assignRole($roles);
         }
+
+        ActivityLog::create([
+            'activity' => 'Guru  "'.$profile->user->name.'" Di edit oleh '.auth()->user()->name
+        ]);
+
+
         
         $user->update($request->all());
         return redirect('/guru')
@@ -173,10 +185,17 @@ class GuruController extends Controller
 
         $profile = $user->$profile_type;
 
+        ActivityLog::create([
+            'activity' => 'Guru  "'.$profile->user->name.'" Di Hapus oleh '.auth()->user()->name
+        ]);
+
+
         $profile->delete();
 
         $user->delete();
 
+
+    
         return redirect('/guru');
         
     }

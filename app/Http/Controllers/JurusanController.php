@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,13 @@ class JurusanController extends Controller
             'nama' => 'required',
         ]);
         $input = $request->all();
-        Jurusan::create($input);
+        $jurusan= Jurusan::create($input);
+
+        ActivityLog::create([
+            'activity' => 'Jurusan Baru "' .$jurusan->nama.'" Ditambahkan oleh'.auth()->user()->name
+        ]);
+
+
         return redirect('jurusan')
         ->with('success','Data Berhasil Di Tambahkan');
     }
@@ -76,6 +83,11 @@ class JurusanController extends Controller
             'nama'
         ]);
 
+
+        ActivityLog::create([
+            'activity' => 'Jurusan   "'.$jurusan->nama.'" Berhasil di update oleh '.auth()->user()->name
+        ]);
+
         $jurusan->update($request->all());
         return redirect('/jurusan')
         ->with('success','Data Berhasil Di Perbarui');
@@ -88,6 +100,12 @@ class JurusanController extends Controller
     {
         $jurusan = Jurusan::findOrFail($id);
         $jurusan -> delete();
+
+        ActivityLog::create([
+            'activity' => 'Jurusan   "'.$jurusan->nama.'" Berhasil di Hapus oleh '.auth()->user()->name
+        ]);
+
+
         return redirect('/jurusan')
         -> with('success','Data Berhasil Di Hapus');
     }

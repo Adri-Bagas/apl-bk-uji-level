@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Guru;
 use App\Models\Jurusan;
 use App\Models\Kelas;
@@ -63,12 +64,22 @@ class KelasController extends Controller
             'jurusan_id' => ' required'
         ]);
       
-        Kelas::create([
+        $kelas= Kelas::create([
             'nama' => $request->nama,
             'walas_id' => $request->walas_id,
             'bk_id' => $request->bk_id,
             'jurusan_id' => $request->jurusan_id,
         ]);
+
+
+
+
+        ActivityLog::create([
+            'activity' => 'Kelas Baru Di tambahkan "'.$kelas->nama.'" Di tambah oleh'.auth()->user()->name
+        ]);
+
+        
+
         return redirect('kelas')
         ->with('success','Data Berhasil Di Tambahkan');
     }
@@ -112,6 +123,12 @@ class KelasController extends Controller
             'bk_id'
         ]);
 
+        ActivityLog::create([
+            'activity' => 'Kelas  "'.$kelas->nama.'" Di edit oleh'.auth()->user()->name
+        ]);
+
+        
+
         $kelas->update($request->all());
         return redirect('/kelas')
         ->with('success','Data Berhasil Di Perbarui');
@@ -125,6 +142,14 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();
+
+
+        ActivityLog::create([
+            'activity' => 'Kelas  "'.$kelas->nama.'" Di Hapus oleh '.auth()->user()->name
+        ]);
+
+
+
         return redirect('/kelas')
         -> with('success','Data Berhasil Di Hapus');
 

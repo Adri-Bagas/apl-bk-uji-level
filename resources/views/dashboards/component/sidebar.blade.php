@@ -3,7 +3,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="./index.html" class="text-nowrap logo-img">
+            <a href="" class="text-nowrap logo-img">
                 <img src="{{ asset('dashboards') }}/images/logos/dark-logo.svg" width="180" alt="" />
             </a>
             <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
@@ -33,7 +33,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('jurusan') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-desktop"></i>
+                            <i class="ti ti-book"></i>
                         </span>
                         <span class="hide-menu">Jurusan</span>
                     </a>
@@ -85,7 +85,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('seminar') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-palette"></i>
                         </span>
                         <span class="hide-menu">Seminar</span>
                     </a>

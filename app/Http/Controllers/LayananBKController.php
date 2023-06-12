@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\LayananBK;
 use Illuminate\Http\Request;
 
@@ -51,6 +52,10 @@ class LayananBKController extends Controller
             'jenis_layanan' => $request->jenis_layanan,
             'isMultiChild' => $isMultiChild,
             'isCareerOriented' => $isCareerOriented
+        ]);
+
+        ActivityLog::create([
+            'activity' => 'Layanan baru "' .$store->jenis_layanan.'" Di buat oleh '.auth()->user()->name
         ]);
 
         redirect('ganti nanti');

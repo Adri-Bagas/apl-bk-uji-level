@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Foto;
 use App\Models\Kelas;
 use App\Models\Siswa;
@@ -75,6 +76,10 @@ class SiswaController extends Controller
                 'model_id' => $siswa->id
             ]);
         }
+
+        ActivityLog::create([
+            'activity' => 'Siswa Baru "'.$siswa->user->name. '" Di tambahkan oleh '.auth()->user()->name
+        ]);
 
         $user->assignRole('siswa');
 
@@ -158,6 +163,14 @@ class SiswaController extends Controller
             ]);
             }
         }
+
+        
+
+        ActivityLog::create([
+            'activity' => 'nama siswa "'.$profile->user->name.'" Berhasil di update oleh '.auth()->user()->name
+        ]);
+
+
         
         $user->update($request->all());
         return redirect('/siswa')
