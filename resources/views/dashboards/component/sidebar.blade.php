@@ -54,16 +54,21 @@
                         <span class="hide-menu">Guru</span>
                     </a>
                 </li>
-
-               
-
-
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('siswa') }}" aria-expanded="false">
                         <span>
                             <i class="ti ti-layout-dashboard"></i>
                         </span>
                         <span class="hide-menu">Siswa</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('seminar') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-layout-dashboard"></i>
+                        </span>
+                        <span class="hide-menu">Seminar</span>
                     </a>
                 </li>
                 
