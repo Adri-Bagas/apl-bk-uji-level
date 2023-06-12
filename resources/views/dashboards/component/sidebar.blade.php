@@ -33,7 +33,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('jurusan') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-desktop"></i>
                         </span>
                         <span class="hide-menu">Jurusan</span>
                     </a>
@@ -41,7 +41,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('kelas') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-home"></i>
                         </span>
                         <span class="hide-menu">Kelas</span>
                     </a>
@@ -49,7 +49,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('guru') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-user"></i>
                         </span>
                         <span class="hide-menu">Guru</span>
                     </a>
@@ -61,7 +61,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('siswa') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-user"></i>
                         </span>
                         <span class="hide-menu">Siswa</span>
                     </a>
@@ -70,7 +70,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('jeniskerawanan') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-book    "></i>
                         </span>
                         <span class="hide-menu">Jenis Kerawanan</span>
                     </a>
@@ -79,7 +79,7 @@
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('tempat') }}" aria-expanded="false">
                         <span>
-                            <i class="ti ti-layout-dashboard"></i>
+                            <i class="ti ti-home"></i>
                         </span>
                         <span class="hide-menu">Tempat</span>
                     </a>

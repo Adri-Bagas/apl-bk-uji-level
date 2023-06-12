@@ -83,7 +83,7 @@ class GuruController extends Controller
      */
     public function show(string $id)
     {
-        $guru = Guru::find($id);        $roles = $guru->user->getRoleNames()->toArray();
+        $guru = Guru::find($id);$roles = $guru->user->getRoleNames()->toArray();
         return view('dashboards.pages.guru.show', compact('guru', 'roles'));
     }
 
