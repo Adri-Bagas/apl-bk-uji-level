@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <a class="btn btn-warning btn-icon-text text-white " href="{{ route('guru') }}" role="button" style="margin-left:20px; display:inline-block ">Back</a>
+            <a class="btn btn-warning btn-icon-text text-white " href="{{ route('guru') }}" role="button" style="margin-left:700px; display:inline-block ">Back</a>
 
             <a class="btn btn-primary btn-icon-text text-white " href="{{ url('guru/edit', $guru->id) }}" role="button" style="margin-left:20px; display:inline-block ">Edit Data</a>
         </div>
