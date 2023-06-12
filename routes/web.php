@@ -18,7 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/landingpage', function () {
+    return view('landingpage');
+});
+Route::get('/jadwalkonseling', function () {
+    return view('jadwalkonseling');
+});
+Route::get('/inputpage', function () {
+    return view('inputpage');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

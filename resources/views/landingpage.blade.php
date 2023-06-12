@@ -21,15 +21,15 @@
     {{-- navbar --}}
     <header>
         <img class="logo" src="{{asset('assets/Logo-AppBk.png')}}" alt="Logo">
-        <h1>Tarbhak.konseling</h1>
+        <h1>Starbhak.Konseling</h1>
         <nav>
             <ul class="nav-links">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
-                <li><a href="#">lala</a></li>
+                <li><a href="#">Artikel</a></li>
             </ul>
         </nav>
-        <button class="button-nav"><a href="#">Jadwal Konseling</a></button>
+        <button class="button-nav"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
     </header>
 
     {{-- hero --}}
@@ -50,7 +50,7 @@
                 Prefesional, <br> Berempati dan Non Jugdemental
             </p>
             <p class="text2">Bicarakan isi hatimu, tentukan jalan <br> keluar atas masalahmu.</p>
-            <button class="button-hero"><a href="#">Jadwal Konseling</a></button>
+            <button class="button-hero"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
         </div>
         <div class="image-hero">
             <img src="{{asset('assets/Bu_caca-removebg.png')}}" alt="">
@@ -108,7 +108,7 @@
                             <p class="description">The lorem text the section that contains header with having open
                                 functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
 
-                            <button class="button">View More</button>
+                            {{-- <button class="button">View More</button> --}}
                         </div>
                     </div>
                     <div class="card swiper-slide">
@@ -126,7 +126,7 @@
                             <p class="description">The lorem text the section that contains header with having open
                                 functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
 
-                            <button class="button">View More</button>
+                            {{-- <button class="button">View More</button> --}}
                         </div>
                     </div>
                     <div class="card swiper-slide">
@@ -144,7 +144,7 @@
                             <p class="description">The lorem text the section that contains header with having open
                                 functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
 
-                            <button class="button">View More</button>
+                            {{-- <button class="button">View More</button> --}}
                         </div>
                     </div>
                     <div class="card swiper-slide">
@@ -162,7 +162,7 @@
                             <p class="description">The lorem text the section that contains header with having open
                                 functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
 
-                            <button class="button">View More</button>
+                            {{-- <button class="button">View More</button> --}}
                         </div>
                     </div>
                     <div class="card swiper-slide">
@@ -181,7 +181,7 @@
                             <p class="description">The lorem text the section that contains header with having open
                                 functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
 
-                            <button class="button">View More</button>
+                            {{-- <button class="button">View More</button> --}}
                         </div>
                     </div>
                 </div>
@@ -278,27 +278,27 @@
     </div>
     <ul id="accordion" class="accordion">
         <li>
-            <div class="link"></i>WHAT’S YOUR SHIPPING POLICY?<i class="fa fa-chevron-down"></i></div>
+            <div class="link"></i>Bagaimana saya bisa meningkatkan rasa percaya diri saya?<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <p>Hello there</p>
+                <p>Meningkatkan rasa percaya diri adalah proses yang berkelanjutan. Mulailah dengan mengidentifikasi kelebihan dan pencapaian Anda sendiri. Berlatihlah menghargai diri sendiri dan menghentikan kebiasaan membandingkan diri dengan orang lain. Setel tujuan yang realistis dan pecah menjadi langkah-langkah yang dapat dicapai. Mengeksplorasi minat dan hobi baru, menghadapi tantangan, serta mencari dukungan dari orang-orang terdekat juga dapat membantu memperkuat rasa percaya diri.</p>
             </ul>
         </li>
         <li>
-            <div class="link"></i>WHAT’S YOUR RETURN POLICY?<i class="fa fa-chevron-down"></i></div>
+            <div class="link"></i>Bagaimana cara menghadapi perasaan kesepian yang saya rasakan?<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <p>Hello there</p>
+                <p>Penting untuk memahami bahwa perasaan kesepian adalah hal yang umum dan dapat diatasi. Mulailah dengan mencari aktivitas sosial yang sesuai minat Anda, seperti klub atau komunitas yang relevan. Berinteraksilah dengan orang-orang baru, ikuti acara sosial, atau terlibat dalam kegiatan sukarela. Memperluas jaringan sosial dan menjaga komunikasi yang sehat dengan orang-orang terdekat juga bisa membantu mengatasi perasaan kesepian.</p>
             </ul>
         </li>
         <li>
-            <div class="link"></i>HOW DO I RETURN AN ORDER?<i class="fa fa-chevron-down"></i></div>
+            <div class="link"></i>Bagaimana saya bisa mengatasi tekanan belajar yang berlebihan?<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <p>Hello there</p>
+                <p>Ada beberapa strategi yang bisa Anda coba. Pertama, buatlah jadwal belajar yang teratur dan efisien. Prioritaskan tugas-tugas Anda dan sisihkan waktu untuk istirahat yang cukup. Juga penting untuk mengembangkan kebiasaan belajar yang sehat, seperti membagi materi menjadi bagian yang lebih kecil, mengajukan pertanyaan kepada guru saat menghadapi kesulitan, dan mencari dukungan teman sekelas atau keluarga.</p>
             </ul>
         </li>
         <li>
-            <div class="link"></i>HOW DO I CONTACT CUSTOMER SERVICE?<i class="fa fa-chevron-down"></i></div>
+            <div class="link"></i>Bagaimana saya bisa mengembangkan keterampilan sosial yang lebih baik?<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <p>Hello there</p>
+                <p>Untuk mengembangkan keterampilan sosial, Anda bisa mulai dengan memperhatikan komunikasi nonverbal, seperti kontak mata, bahasa tubuh, dan ekspresi wajah. Cobalah untuk mendengarkan aktif saat berbicara dengan orang lain dan berlatih mengajukan pertanyaan yang relevan. Melibatkan diri dalam kegiatan sekolah atau ekstrakurikuler juga bisa membantu Anda bertemu dengan orang-orang baru dan mempraktikkan keterampilan sosial.</p>
             </ul>
         </li>
     </ul>
