@@ -17,7 +17,7 @@ class SeminarController extends Controller
     {
         $seminars = Seminar::all();
 
-        return view('ganti nanti', compact('seminar'));
+        return view('dashboards.pages.seminar.index', compact('seminars'));
     }
 
     /**
@@ -25,7 +25,7 @@ class SeminarController extends Controller
      */
     public function create()
     {
-        return view('ganti nanti');
+        return view('dashboards.pages.seminar.create');
     }
 
     /**
@@ -59,13 +59,13 @@ class SeminarController extends Controller
     
                 Foto::create([
                     'img_location' => 'seminar/'.$seminar->id.$randName.'.'.$foto->getClientOriginalExtension(),
-                    'model_type' => 'siswa',
+                    'model_type' => 'seminar',
                     'model_id' => $seminar->id
                 ]);
             }
         }
 
-        return redirect('ganti nanti');
+        return redirect()->route('seminar');
     }
 
     /**
@@ -83,7 +83,7 @@ class SeminarController extends Controller
     public function edit(string $id)
     {
         $seminar = Seminar::find($id);
-        return view('ganti nanti', compact('seminar'));
+        return view('dashboards.pages.seminar.edit', compact('seminar'));
     }
 
     /**
@@ -111,7 +111,13 @@ class SeminarController extends Controller
 
         if($request->foto){
 
-            // DONT FORGET PUT FOTO DELETION HERE
+            if($seminar->fotos() != null){
+                foreach ($seminar->fotos() as $foto) {
+                    Storage::delete('public/' . $foto->img_location);
+                    $foto->delete();
+                }
+            }
+            
 
             foreach($request->foto as $key => $foto){
                 $randName = Str::random(10);
@@ -121,13 +127,13 @@ class SeminarController extends Controller
     
                 Foto::create([
                     'img_location' => 'seminar/'.$seminar->id.$randName.'.'.$foto->getClientOriginalExtension(),
-                    'model_type' => 'siswa',
+                    'model_type' => 'seminar',
                     'model_id' => $seminar->id
                 ]);
             }
         }
 
-        return redirect('ganti nanti');
+        return redirect()->route('seminar');
     }
 
     /**
@@ -137,10 +143,13 @@ class SeminarController extends Controller
     {
         $seminar = Seminar::find($id);
 
-        // DONT FORGET PUT DELETION HERE
+        foreach ($seminar->fotos() as $foto) {
+            Storage::delete('public/' . $foto->img_location);
+            $foto->delete();
+        }
 
         $seminar->delete();
 
-        return redirect('ganti nanti');
+        return redirect()->route('seminar');
     }
 }

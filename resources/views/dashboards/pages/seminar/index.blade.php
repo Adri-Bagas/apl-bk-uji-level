@@ -29,7 +29,7 @@
                         <td>
                             <div class="btn-form" style="display: flex">
                                 <a href="{{ url('seminar/edit', $seminar->id) }}" class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Edit</a> 
-                                <form action="seminar/delete/{{$seminar->user->id}}" method="POST"
+                                <form action="seminar/delete/{{$seminar->id}}" method="POST"
                                     onsubmit="return confirm('Are You Sure?')">
                                     @csrf
                                     @method('DELETE')
