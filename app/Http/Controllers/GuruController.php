@@ -103,9 +103,6 @@ class GuruController extends Controller
     public function update(Request $request, string $id)
     {
 
-
-     
-
         $user = User::find($id);
 
         $profile_type = $user->profile_type;

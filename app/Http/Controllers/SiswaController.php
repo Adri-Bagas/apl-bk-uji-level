@@ -78,9 +78,7 @@ class SiswaController extends Controller
 
         $user->assignRole('siswa');
 
-        return response()->json(
-            'berhasil'
-        );
+        return redirect()->route('siswa');
 
     }
 
@@ -98,7 +96,10 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        
+        $siswa = Siswa::find($id);
+        $kelas = Kelas::all();
+
+        return view('dashboards.pages.siswa.edit', compact('siswa', 'kelas'));
     }
 
     /**
@@ -106,34 +107,40 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'no_telepon' => 'required',
-            'nipd' => 'required',
-            'nisn' => 'required',
-            'kelas_id' => 'required',
-        ]);
-
         $user = User::find($id);
 
         $profile_type = $user->profile_type;
 
         $profile = $user->$profile_type;
 
+        $validated = $request->validate([
+            'name' => 'required',
+            'nipd' => 'required',
+            'password' => 'required',
+            'nisn' => 'required',
+            'email' => 'required',
+            'no_telepon' => 'required',
+            'kelas_id' => 'required'
+        ]);
+
         $update = $user->update([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'profile_type' => 'siswa'
         ]);
 
-        $profile->update([
+        if(!$update){
+            return response()->json(
+                'Gagal'
+            );  
+        }
+
+        $update2 = $profile->update([
             'user_id' => $user->id,
-            'no_telepon' => $request->no_telepon,
+            'nisn' => $request->nisn,
             'nipd' => $request->nipd,
-            'nik' => $request->nisn
+            'no_telepon' => $request->no_telepon,
+            'kelas_id' => $request->kelas_id
         ]);
 
         if($request->foto){
@@ -142,6 +149,7 @@ class SiswaController extends Controller
             );
 
             if(sizeof($profile->fotos()) == 0){
+                
             Foto::create([
                 'img_location' => 'siswa/'.$profile->id.'.'.$request->foto->getClientOriginalExtension(),
                 'model_type' => 'siswa',
@@ -149,10 +157,10 @@ class SiswaController extends Controller
             ]);
             }
         }
-
-        return response()->json(
-            'berhasil'
-        );
+        
+        $user->update($request->all());
+        return redirect('/siswa')
+        ->with('success','Data Berhasil Di Perbarui');
     }
 
     /**
@@ -170,6 +178,6 @@ class SiswaController extends Controller
 
         $profile->delete();
 
-        return redirect('/siswa');
+        return redirect()->route('siswa');
     }
 }

@@ -15,7 +15,7 @@ class SeminarController extends Controller
      */
     public function index()
     {
-        $seminar = Seminar::all();
+        $seminars = Seminar::all();
 
         return view('ganti nanti', compact('seminar'));
     }

@@ -6,8 +6,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\TempatController;
-use App\Models\Siswa;
-use App\Models\Tempat;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -76,6 +75,9 @@ Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 Route::get('/siswa/create',[SiswaController::class,'create']);
 Route::post('/siswa/create',[SiswaController::class,'store']);
 Route::delete('/siswa/delete/{id}',[SiswaController::class,'destroy']);
+Route::get('/siswa/edit/{id}',[SiswaController::class,'edit']);
+Route::put('/siswa/{id}',[SiswaController::class,'update']);
+Route::get('/siswa/{id}', [SiswaController::class, 'show']);
 
 
 
@@ -94,3 +96,14 @@ Route::post('/jeniskerawanan/create',[JenisKerawananController::class,'store']);
 Route::get('/jeniskerawanan/edit/{id}',[JenisKerawananController::class,'edit']);
 Route::put('/jeniskerawanan/edit/{id}',[JenisKerawananController::class,'update']);
 Route::delete('/jeniskerawanan/delete/{id}',[JenisKerawananController::class,'destroy']);
+
+
+// SEMINAR
+Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar');
+Route::get('/seminar/create',[SeminarController::class,'create']);
+Route::post('/seminar/create',[SeminarController::class,'store']);
+Route::delete('/seminar/delete/{id}',[SeminarController::class,'destroy']);
+Route::get('/seminar/edit/{id}',[SeminarController::class,'edit']);
+Route::put('/seminar/{id}',[SeminarController::class,'update']);
+Route::get('/seminar/{id}', [SeminarController::class, 'show']);
+
