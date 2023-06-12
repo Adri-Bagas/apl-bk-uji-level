@@ -16,35 +16,51 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="/siswa/create" method="POST">
+                <form action="/siswa/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3" >
                       <label for="exampleInputEmail1" class="form-label">Nama</label>
-                      <input type="text" name="nama" class="form-control" placeholder=" Masukkan Nama">
+                      <input type="text" name="name" class="form-control" placeholder=" Masukkan Nama" value="{{ old('name') }}">
                     </div>
 
                     <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Email</label>
-                        <input type="text" name="email" class="form-control" placeholder=" Masukkan Email">
+                        <input type="text" name="email" class="form-control" placeholder=" Masukkan Email" value="{{ old('email') }}">
+                      </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">Password</label>
+                        <input type="text" name="password" class="form-control" placeholder="Masukkan Password" value="*123456*" readonly>
+                      </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">No Telepon</label>
+                        <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon" value="{{ old('no_telepon') }}">
+                      </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">Profile</label>
+                        <input type="file" name="foto" class="form-control" placeholder="" value="">
                       </div>
                     
                       <div class="mb-3" >
-                        <label for="exampleInputEmail1" class="form-label">Nipd</label>
-                        <input type="text" name="Nipd" class="form-control" placeholder=" Masukkan Nomor ">
+                        <label for="exampleInputEmail1" class="form-label">NIPD</label>
+                        <input type="text" name="nipd" class="form-control" placeholder=" Masukkan Nomor " value="{{ old('nipd') }}">
+                      </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">NISN</label>
+                        <input type="text" name="nisn" class="form-control" placeholder=" Masukkan Nomor " value="{{ old('nisn') }}">
                       </div>
 
                       <div class="mb-3">
                         <label class="form-label">Kelas Id</label>
                         <select class="form-select" name="kelas_id" id="kelasid">
                           @foreach($kelas as $item)
-                          <option value="{{$item->kelas->id}}">{{$item->name}}</option>
+                          <option value="{{$item->id}}">{{$item->nama}}</option>
                           @endforeach
                         </select>
                       </div>
-
-                      
-
-
 
                   <table>
                     <tr>

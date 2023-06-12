@@ -16,7 +16,7 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="{{ url('guru',$guru->user->id) }}" method="POST">
+                <form action="{{ url('guru',$guru->user->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                   <div class="mb-3" >
@@ -38,6 +38,12 @@
                         <label for="exampleInputEmail1" class="form-label">No Telepon</label>
                         <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon" value="{{ $guru->no_telepon}}">
                       </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">Profile</label>
+                        <input type="file" name="foto" class="form-control" placeholder="" value="">
+                      </div>
+
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Roles</label>
                             <select class="form-select" name="roles[]" id="roles" multiple>

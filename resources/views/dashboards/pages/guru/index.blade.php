@@ -21,7 +21,7 @@
                     @foreach($gurus as $guru)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $guru->user->name }}</td>
+                        <td><a href="{{ url('guru', $guru->id) }}" style="color: black;">{{ $guru->user->name }}</a></td>
                         <td>{{ $guru->user->email }}</td>
                         <td>{{ $guru->no_telepon }}</td>
                         <td>

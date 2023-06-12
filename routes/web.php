@@ -71,3 +71,4 @@ Route::get('/guru/{id}', [GuruController::class, 'show']);
 // SISWA 
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 Route::get('/siswa/create',[SiswaController::class,'create']);
+Route::post('/siswa/create',[SiswaController::class,'store']);

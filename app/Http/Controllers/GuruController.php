@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Foto;
 use App\Models\Guru;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class GuruController extends Controller
@@ -32,6 +34,8 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
+
+        
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
@@ -47,10 +51,22 @@ class GuruController extends Controller
             'profile_type' => 'guru'
         ]);
 
-        Guru::create([
+        $guru = Guru::create([
             'user_id' => $user->id,
             'no_telepon' => $request->no_telepon,
         ]);
+
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/guru', $request->file('foto'), $guru->id.'.'.$request->foto->getClientOriginalExtension()
+            );
+
+            Foto::create([
+                'img_location' => 'guru/'.$guru->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'guru',
+                'model_id' => $guru->id
+            ]);
+        }
 
         foreach($request->roles as $roles){
             $user->assignRole($roles);
@@ -67,8 +83,8 @@ class GuruController extends Controller
      */
     public function show(string $id)
     {
-        $guru = Guru::find($id);
-        return $guru;
+        $guru = Guru::find($id);        $roles = $guru->user->getRoleNames()->toArray();
+        return view('dashboards.pages.guru.show', compact('guru', 'roles'));
     }
 
     /**
@@ -86,6 +102,10 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
+
+     
+
         $user = User::find($id);
 
         $profile_type = $user->profile_type;
@@ -116,6 +136,21 @@ class GuruController extends Controller
             'user_id' => $user->id,
             'no_telepon' => $request->no_telepon,
         ]);
+
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/guru', $request->file('foto'), $profile->id.'.'.$request->foto->getClientOriginalExtension()
+            );
+
+            if(sizeof($profile->fotos()) == 0){
+                
+            Foto::create([
+                'img_location' => 'guru/'.$profile->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'guru',
+                'model_id' => $profile->id
+            ]);
+            }
+        }
 
         $user->syncRoles([]);
 

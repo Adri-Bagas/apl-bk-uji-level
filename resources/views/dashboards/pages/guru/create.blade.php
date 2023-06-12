@@ -16,7 +16,7 @@
                                 </ul>
                             </div>
                         @endif
-                <form action="/guru/create" method="POST">
+                <form action="/guru/create" method="POST" enctype="multipart/form-data">
                     @csrf
                   <div class="mb-3" >
                       <label for="exampleInputEmail1" class="form-label">Nama</label>
@@ -26,7 +26,7 @@
                     <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Email</label>
                         <input type="text" name="email" class="form-control" placeholder="Masukkan Email" value="{{ old('email') }}">
-                      </div>
+                    </div>
 
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Password</label>
@@ -37,6 +37,12 @@
                         <label for="exampleInputEmail1" class="form-label">No Telepon</label>
                         <input type="text" name="no_telepon" class="form-control" placeholder="No Telepon" value="{{ old('no_telepon') }}">
                       </div>
+
+                      <div class="mb-3" >
+                        <label for="exampleInputEmail1" class="form-label">Profile</label>
+                        <input type="file" name="foto" class="form-control" placeholder="" value="">
+                      </div>
+
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Roles</label>
                             <select class="form-select" name="roles[]" id="roles" multiple>

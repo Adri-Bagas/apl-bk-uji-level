@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Foto;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -29,7 +31,7 @@ class SiswaController extends Controller
         $kelas = Kelas::all();
 
         
-        return view('dashboards.pages.siswa.create');
+        return view('dashboards.pages.siswa.create', compact('siswa', 'kelas'));
     }
 
     /**
@@ -54,12 +56,25 @@ class SiswaController extends Controller
             'profile_type' => 'siswa'
         ]);
 
-        Siswa::create([
+        $siswa = Siswa::create([
             'user_id' => $user->id,
             'no_telepon' => $request->no_telepon,
             'nipd' => $request->nipd,
-            'nik' => $request->nisn
+            'nisn' => $request->nisn,
+            'kelas_id' => $request->kelas_id
         ]);
+
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/siswa', $request->file('foto'), $siswa->id.'.'.$request->foto->getClientOriginalExtension()
+            );
+
+            Foto::create([
+                'img_location' => 'siswa/'.$siswa->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'siswa',
+                'model_id' => $siswa->id
+            ]);
+        }
 
         $user->assignRole('siswa');
 
@@ -120,6 +135,20 @@ class SiswaController extends Controller
             'nipd' => $request->nipd,
             'nik' => $request->nisn
         ]);
+
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/siswa', $request->file('foto'), $profile->id.'.'.$request->foto->getClientOriginalExtension()
+            );
+
+            if(sizeof($profile->fotos()) == 0){
+            Foto::create([
+                'img_location' => 'siswa/'.$profile->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'siswa',
+                'model_id' => $profile->id
+            ]);
+            }
+        }
 
         return response()->json(
             'berhasil'
