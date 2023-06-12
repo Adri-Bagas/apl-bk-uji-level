@@ -4,7 +4,6 @@ use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SiswaController;
-
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -72,3 +71,16 @@ Route::get('/guru/{id}', [GuruController::class, 'show']);
 Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
 Route::get('/siswa/create',[SiswaController::class,'create']);
 Route::post('/siswa/create',[SiswaController::class,'store']);
+Route::delete('/siswa/delete/{id}',[SiswaController::class,'destroy']);
+Route::get('/siswa/edit/{id}',[SiswaController::class,'edit']);
+Route::put('/siswa/{id}',[SiswaController::class,'update']);
+Route::get('/siswa/{id}', [SiswaController::class, 'show']);
+
+// SEMINAR
+Route::get('/seminar', [SiswaController::class, 'index'])->name('seminar');
+Route::get('/seminar/create',[SiswaController::class,'create']);
+Route::post('/seminar/create',[SiswaController::class,'store']);
+Route::delete('/seminar/delete/{id}',[SiswaController::class,'destroy']);
+Route::get('/seminar/edit/{id}',[SiswaController::class,'edit']);
+Route::put('/seminar/{id}',[SiswaController::class,'update']);
+Route::get('/seminar/{id}', [SiswaController::class, 'show']);
