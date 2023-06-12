@@ -14,7 +14,7 @@ class JenisKerawananController extends Controller
     {
         $datas = JenisKerawanan::all();
 
-        return view('ganti nanti', compact('datas'));
+        return view('dashboards.pages.jeniskerawanan.index', compact('datas'));
     }
 
     /**
@@ -22,7 +22,8 @@ class JenisKerawananController extends Controller
      */
     public function create()
     {
-        return view('ganti nanti');
+        
+        return view('dashboards.pages.jeniskerawanan.create');
     }
 
     /**
@@ -38,7 +39,7 @@ class JenisKerawananController extends Controller
             'jenis_kerawanan' => $request->jenis_kerawanan
         ]);
 
-        return redirect('ganti nanti');
+        return redirect('jeniskerawanan');
     }
 
     /**
@@ -55,8 +56,8 @@ class JenisKerawananController extends Controller
      */
     public function edit(string $id)
     {
-        $jenisKerawanan = JenisKerawanan::find($id);
-        return view('ganti nanti', compact('jenisKerawanan'));
+        $rawan = JenisKerawanan::find($id);
+        return view('dashboards.pages.jeniskerawanan.edit', compact('rawan'));
     }
 
     /**
@@ -74,7 +75,7 @@ class JenisKerawananController extends Controller
             'jenis_kerawanan' => $request->jenis_kerawanan
         ]);
 
-        return redirect('ganti nanti');
+        return redirect('jeniskerawanan');
     }
 
     /**
@@ -86,6 +87,6 @@ class JenisKerawananController extends Controller
 
         $jenisKerawanan->delete();
 
-        return redirect('ganti nanti');
+        return redirect('jeniskerawanan');
     }
 }

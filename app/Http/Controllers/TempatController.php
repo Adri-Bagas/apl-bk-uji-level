@@ -14,7 +14,7 @@ class TempatController extends Controller
     {
         $tempat = Tempat::all();
 
-        return view('ganti nanti', compact('tempat'));
+        return view('dashboards.pages.tempat.index', compact('tempat'));
     }
 
     /**
@@ -22,7 +22,7 @@ class TempatController extends Controller
      */
     public function create()
     {
-        return view('ganti nanti'); 
+        return view('dashboards.pages.tempat.create'); 
     }
 
     /**
@@ -38,7 +38,7 @@ class TempatController extends Controller
             'nama' => $request->nama
         ]);
 
-        return redirect('ganti nanti');
+        return redirect('tempat');
     }
 
     /**
@@ -58,7 +58,7 @@ class TempatController extends Controller
     {
         $tempat = Tempat::find($id);
 
-        return view('ganti nanti', compact('tempat'));
+        return view('dashboards.pages.tempat.edit', compact('tempat'));
     }
 
     /**
@@ -76,7 +76,7 @@ class TempatController extends Controller
             'nama' => $request->nama
         ]);
 
-        return redirect('ganti nanti');
+        return redirect('/tempat');
     }
 
     /**
@@ -88,6 +88,6 @@ class TempatController extends Controller
 
         $tempat->delete();
 
-        return redirect('ganti nanti');
+        return redirect('/tempat');
     }
 }

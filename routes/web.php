@@ -5,6 +5,9 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\JenisKerawananController;
+use App\Http\Controllers\TempatController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +24,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('landingpage');
 });
-
+Route::get('/landingpage', function () {
+    return view('landingpage');
+});
+Route::get('/jadwalkonseling', function () {
+    return view('jadwalkonseling');
+});
+Route::get('/inputpage', function () {
+    return view('inputpage');
+});
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -77,6 +88,25 @@ Route::get('/siswa/edit/{id}',[SiswaController::class,'edit']);
 Route::put('/siswa/{id}',[SiswaController::class,'update']);
 Route::get('/siswa/{id}', [SiswaController::class, 'show']);
 
+
+
+//  TEMPAT
+Route::get('/tempat', [TempatController::class, 'index'])->name('tempat');
+Route::get('/tempat/create',[TempatController::class,'create']);
+Route::post('/tempat/create',[TempatController::class,'store']);
+Route::get('/tempat/edit/{id}',[TempatController::class,'edit']);
+Route::put('/tempat/edit/{id}',[TempatController::class,'update']);
+Route::delete('/tempat/delete/{id}',[TempatController::class,'destroy']);
+
+//  KERAWANAN
+Route::get('/jeniskerawanan', [JenisKerawananController::class, 'index'])->name('jeniskerawanan');
+Route::get('/jeniskerawanan/create',[JenisKerawananController::class,'create']);
+Route::post('/jeniskerawanan/create',[JenisKerawananController::class,'store']);
+Route::get('/jeniskerawanan/edit/{id}',[JenisKerawananController::class,'edit']);
+Route::put('/jeniskerawanan/edit/{id}',[JenisKerawananController::class,'update']);
+Route::delete('/jeniskerawanan/delete/{id}',[JenisKerawananController::class,'destroy']);
+
+
 // SEMINAR
 Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar');
 Route::get('/seminar/create',[SeminarController::class,'create']);
@@ -85,3 +115,4 @@ Route::delete('/seminar/delete/{id}',[SeminarController::class,'destroy']);
 Route::get('/seminar/edit/{id}',[SeminarController::class,'edit']);
 Route::put('/seminar/{id}',[SeminarController::class,'update']);
 Route::get('/seminar/{id}', [SeminarController::class, 'show']);
+
