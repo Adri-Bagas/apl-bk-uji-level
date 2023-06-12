@@ -169,5 +169,7 @@ class SiswaController extends Controller
         $profile->delete();
 
         $profile->delete();
+
+        return redirect('/siswa');
     }
 }
