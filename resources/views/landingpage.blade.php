@@ -176,15 +176,31 @@
                             <span class="overlay"></span>
 
                             <div class="card-image">
-                                <img src="https://tinypic.host/images/2022/12/19/img_avatar.png" alt=""
-                                    class="card-img">
+                                <img src="{{asset('assets/rikrik.jpeg')}}" alt="" class="card-img">
                             </div>
                         </div>
 
                         <div class="card-content">
-                            <h2 class="name">Mohamed Yousef
+                            <h2 class="name">Pak Ricky
                             </h2>
-                            <p class="description">"Jangan biarkan ketakutan atau kegagalan menghentikanmu. Ambillah langkah kecil setiap hari menuju tujuanmu, dan satu hari nanti, kamu akan mencapai impianmu."</p>
+                            <p class="description">"Kamu adalah penentu masa depanmu. Jangan pernah takut untuk bermimpi besar dan bekerja keras untuk mewujudkannya. Setiap langkah kecilmu menuju impianmu adalah sebuah prestasi. Percayalah pada dirimu sendiri dan jangan pernah berhenti mencoba."</p>
+
+                            {{-- <button class="button">View More</button> --}}
+                        </div>
+                    </div>
+                    <div class="card swiper-slide">
+                        <div class="image-content">
+                            <span class="overlay"></span>
+
+                            <div class="card-image">
+                                <img src="{{asset('assets/Bu sheila.png')}}" alt="" class="card-img">
+                            </div>
+                        </div>
+
+                        <div class="card-content">
+                            <h2 class="name">Bu Sheila
+                            </h2>
+                            <p class="description">"Jika kamu hanya bertahan di zona nyaman, maka kamu tak akan pernah tahu banyak hal. Jangan takut mencoba!"</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>

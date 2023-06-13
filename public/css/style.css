@@ -511,10 +511,7 @@ a {
  }
 
  .submenu p {
-  	border-bottom: 3px solid #fff;
- }
-
- .submenu p {
+    border-bottom: 3px solid #fff;
  	display: block;
  	text-decoration: none;
  	color: #000;

@@ -9,8 +9,8 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\TempatController;
 use App\Http\Controllers\LayananBKController;
-
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +29,8 @@ Route::get('/', function () {
 Route::get('/landingpage', function () {
     return view('landingpage');
 });
-Route::get('/jadwalkonseling', function () {
-    return view('jadwalkonseling');
-});
+Route::get('/jadwalkonseling', [DashboardController::class, 'tampilansiswa']);
+
 Route::get('/inputpage', function () {
     return view('inputpage');
 });
