@@ -15,6 +15,10 @@ class KonsulingBK extends Model
         return $this->belongsToMany(Siswa::class, 'siswa_konsuling', 'konsuling_b_k_id', 'siswa_id');
     }
 
+    public function bk(){
+        return $this->belongsTo(Guru::class, 'bk_id');
+    }
+
     public function layananBK(){
         return $this->belongsTo(LayananBK::class, 'Layanan_BK_id');
     }

@@ -40,16 +40,13 @@
     <div class="container-profile">
         <div class="container-2">
             <div class="card-image">
-                <img src="{{asset('assets/Farhan.jpeg')}}" class="card-img" alt="">
+                <img src="{{ auth()->user()->siswa->fotos()->first() ? asset('storage/'.auth()->user()->siswa->fotos()->first()->img_location) : ''}}" class="card-img" alt="">
 
                 <div class="card-content">
-                    <p class="nama">Farhan marjan</p>
-                    <p class="kelas">XI PPLG 2</p>
-                    <p class="gmail">Farhan123@gmail.com</p>
+                    <p class="nama">{{ auth()->user()->name }}</p>
+                    <p class="kelas">{{ auth()->user()->siswa->kelas->nama }}</p>
+                    <p class="gmail">{{ auth()->user()->email  }} | {{ auth()->user()->siswa->no_telepon }}</p>
 
-                    <div class="container-button">
-                        <button class="button-messege"><a href="#">Messege</a></button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -98,8 +95,55 @@
     {{-- content table --}}
     <div class="container-table">
         <div class="sub-judul">
-            <h1>History</h1>
+            <h1>Jadwal</h1>
         </div>
+
+        <div class="card" style="position: relative; top: 150px; margin: 0px 60px 20px">
+        <div class="card-body" style="padding: 30px 40px;">
+            <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="th-sm">#</th>
+                        <th class="th-sm">Jenis Layanan</th>
+                        <th class="th-sm">Tanggal</th>
+                        <th class="th-sm">Waktu</th>
+                        <th class="th-sm">Tempat</th>
+                        <th class="th-sm">Guru</th>
+                        <th class="th-sm">Status</th>
+                        <th class="th-sm">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(auth()->user()->siswa->konsulings as $KonsulingBK)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $KonsulingBK->layananBK->jenis_layanan }}</td>
+                        <td>{{ $KonsulingBK->tanggal_konseling }}</td>
+                        <td>{{ $KonsulingBK->waktu_konseling }}</td>
+                        <td>{{ $KonsulingBK->tempat->nama }}</td>
+                        <td>
+                            {{ $KonsulingBK->bk->user->name }}
+                        </td>
+                        <td>
+                            {{ $KonsulingBK->status }}
+                        </td>
+                        <td>
+                            @if($KonsulingBK->status == "PENDING")
+                            <div class="btn-form" style="display: flex">
+                                <a href="" class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Accept</a> 
+
+                                <a class="btn btn-danger btn-icon-text text-white btn-sm">Reschedule</a>
+                            </div>
+                            @else
+                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" disabled>Tulis Hasil</a> 
+                            @endif
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
     </div>
 
     {{-- Content Event --}}
@@ -153,8 +197,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
 </script>
+    <script src="{{ asset('dashboards') }}/libs/jquery/dist/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-<script src="{{ asset('dashboards') }}/libs/jquery/dist/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#dtBasicExample').DataTable();

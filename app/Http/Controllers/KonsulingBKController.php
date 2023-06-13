@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\KonsulingBK;
+use App\Models\LayananBK;
 use App\Models\PengajuanKonseling;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -40,8 +41,8 @@ class KonsulingBKController extends Controller
         return view('ganti nanti'); // from create jadwal nya
     }
 
-    public function simpanKonsuling(Request $request){
-
+    public function simpanKonsuling(Request $request, $namaLayanan){
+        $LayananBK = LayananBK::where('jenis_layanan', $namaLayanan)->get()->first();
         $validate = $request->validate([
             'siswas_id' => 'required',
             'tanggal_konseling' => 'required',
@@ -50,12 +51,12 @@ class KonsulingBKController extends Controller
         ]);
         
         $Konsuling = KonsulingBK::create([
-            'Layanan_BK_id' => $request->Layanan_BK_id,
-            'bk_id' => $request->bk_id,
+            'Layanan_BK_id' => $LayananBK->id,
+            'bk_id' => auth()->user()->profile_type == 'guru' ? auth()->user()->guru->id : auth()->user()->siswa->kelas->bk_id,
             'tanggal_konseling' => $request->tanggal_konseling,
             'waktu_konseling' => $request->waktu_konseling,
             'tempat_id' => $request->tempat_id,
-            'ket' => $request->ket,
+            'ket' => auth()->user()->profile_type == 'guru' ? $request->ket : '',
         ]);
 
         if(auth()->user()->profile_type == 'guru'){
@@ -87,7 +88,11 @@ class KonsulingBKController extends Controller
             ]);
         }
 
-        return redirect('ganti nanti');
+        if(auth()->user()->profile_type == 'guru'){
+            return redirect('/bk/konseling');
+        }else{
+            return redirect('/jadwalkonseling');
+        }
     }
 
     public function menerimaPengajuan($id){

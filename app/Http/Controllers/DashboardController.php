@@ -33,6 +33,10 @@ class DashboardController extends Controller
         
         $jumlahSiswaYangPernahBertemuBK = 0;
 
+        if(auth()->user()->hasRole('siswa')){
+            return redirect('/jadwalkonseling');
+        }
+
         if(auth()->user()->hasRole('admin')){
             $activityLogs = ActivityLog::all();
         }

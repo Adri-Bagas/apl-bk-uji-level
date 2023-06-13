@@ -7,6 +7,7 @@ use App\Http\Controllers\KelasController;
 use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JenisKerawananController;
+use App\Http\Controllers\KonsulingBKController;
 use App\Http\Controllers\TempatController;
 use App\Http\Controllers\LayananBKController;
 use Illuminate\Support\Facades\Route;
@@ -29,11 +30,11 @@ Route::get('/', function () {
 Route::get('/landingpage', function () {
     return view('landingpage');
 });
-Route::get('/jadwalkonseling', [DashboardController::class, 'tampilansiswa']);
 
 Route::get('/inputpage', function () {
     return view('inputpage');
 });
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -133,5 +134,19 @@ Route::middleware([
     Route::get('/bk/konseling', [DashboardController::class, 'dataPerjanjianBKDenganSiswa']);
     Route::get('/bk/konseling/{namaJenisLayanan}', [DashboardController::class, 'dataPerjanjianBKDenganSiswaSesuaiLayanan']);
     Route::get('/bk/konseling/input/{namaJenisLayanan}', [DashboardController::class, 'inputBimbingan']);
+    Route::post('/bk/konseling/input/{namaJenisLayanan}', [KonsulingBKController::class, 'simpanKonsuling']);
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:siswa'
+])->group(function () {
+    
+    Route::get('/jadwalkonseling', [DashboardController::class, 'tampilansiswa']);
+    Route::get('/inputpage', function () {
+        return view('inputpage');
+    });
 });
 
