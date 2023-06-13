@@ -90,24 +90,6 @@
 	}
 });
 
-new TomSelect('#tom-select-karir', {
-    create: true,
-	render:{
-		option: function(data) {
-
-			const div = document.createElement('div');
-			div.className = 'd-flex align-items-center';
-
-			const span = document.createElement('span');
-			span.className = 'flex-grow-1';
-			span.innerText = data.text;
-			div.append(span);
-
-			return div;
-		},
-	}
-})
-
 new TomSelect('#tom-select-tempat', {
     create: true,
 	render:{
@@ -124,6 +106,24 @@ new TomSelect('#tom-select-tempat', {
 			return div;
 		},
 	}
-})
+});
+
+new TomSelect('#tom-select-karir', {
+    create: true,
+	render:{
+		option: function(data) {
+
+			const div = document.createElement('div');
+			div.className = 'd-flex align-items-center';
+
+			const span = document.createElement('span');
+			span.className = 'flex-grow-1';
+			span.innerText = data.text;
+			div.append(span);
+
+			return div;
+		},
+	}
+});
 </script>
 @endsection
