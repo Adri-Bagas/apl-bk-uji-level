@@ -13,6 +13,7 @@
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 
     {{-- swiper css --}}
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
@@ -26,8 +27,8 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="/landingpage">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Artikel</a></li>
+                <li><a href="/landingpage#about">About</a></li>
+                <li><a href="/jadwalkonseling#event">Artikel</a></li>
             </ul>
         </nav>
 
@@ -39,7 +40,7 @@
     <div class="container-profile">
         <div class="container-2">
             <div class="card-image">
-                <img src="{{asset('assets/Bu-caca.png')}}" class="card-img" alt="">
+                <img src="{{asset('assets/Farhan.jpeg')}}" class="card-img" alt="">
 
                 <div class="card-content">
                     <p class="nama">Farhan marjan</p>
@@ -91,15 +92,6 @@
                 </div>
             </div>
         </div>
-
-        {{-- date and time picker --}}
-        {{-- <div class="date-time-picker">
-            <h1 class="date-time-picker-text">Select a Date and Time</h1>
-            <input type="datetime-local" required="required" class="input-date">
-            <div class="containerasa">
-                <button class="button-submit"><a href="#">Submit</a></button>
-            </div>
-        </div> --}}
     </div>
 
 
@@ -112,7 +104,7 @@
 
     {{-- Content Event --}}
     <div class="container-event">
-        <h1>Events</h1>
+        <h1  id="event">Events</h1>
         <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 590" xmlns="http://www.w3.org/2000/svg"
             class="transition duration-300 ease-in-out delay-150">
             <path
@@ -215,6 +207,14 @@
 <script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
+</script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="{{ asset('dashboards') }}/libs/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#dtBasicExample').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
 </script>
 <script src="/js/jadwalkonseling.js"></script>
 <script src="{{asset('js/script.js')}}"></script>
