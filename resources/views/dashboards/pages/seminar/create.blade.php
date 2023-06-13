@@ -50,7 +50,7 @@
 
                     <table>
                         <tr>
-                            <td><a style="margin-left: 20px," class="btn btn-warning" href="/guru">Cancel</a></td>
+                            <td><a style="margin-left: 20px," class="btn btn-warning" href="/seminar">Cancel</a></td>
                             <td><button type="submit" class="btn btn-success" style="margin-left:20px">Submit</button></td>
                         </tr>
                     </table>

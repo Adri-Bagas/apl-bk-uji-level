@@ -90,6 +90,15 @@
                         <span class="hide-menu">Seminar</span>
                     </a>
                 </li>
+
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('layanan') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-book"></i>
+                        </span>
+                        <span class="hide-menu">Layanan</span>
+                    </a>
+                </li>
                 
             </ul>
         </nav>

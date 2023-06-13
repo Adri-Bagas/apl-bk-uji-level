@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 @endif
-                <form action="{{ url('siswa', $siswa->user->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ url('layanan') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="mb-3">
