@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
 use App\Models\LayananBK;
+use App\Models\Seminar;
 use App\Models\Siswa;
 use App\Models\Tempat;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
+
+    public function tampilansiswa() {
+
+        $seminars = Seminar::all();
+
+        return view('jadwalkonseling',compact('seminars'));
+    }
+
     public function index(){
 
         $activityLogs = 0;

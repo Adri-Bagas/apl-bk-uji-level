@@ -164,79 +164,24 @@
             <div class="slide-container swiper">
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
-
+                        @foreach ($seminars as $seminar)
                         <div class="card swiper-slide">
                             <div class="image-content">
                                 <span class="overlay"></span>
 
                                 <div class="card-image-event">
-                                    <img src="{{asset('assets/')}}" alt="" class="card-img">
+                                    <img src="{{ $seminar->fotos()->first() ? asset('storage/'.$seminar->fotos()->first()->img_location) : '' }}" alt="" class="card-img">
                                 </div>
                             </div>
 
                             <div class="card-content-event">
-                                <p class="tanggal">10/5/2023</p>
-                                <h2 class="nama-seminar">Seminar Bimbingan Konseling</h2>
-                                <p class="nama-univ">University Telkom</p>
-                                <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-                                    tempore, consequuntur sed aperiam aut cum?</p>
+                                <p class="tanggal">{{ $seminar->tanggal_seminar }}</p>
+                                <h2 class="nama-seminar">{{ $seminar->judul_seminar }}</h2>
+                                <p class="nama-univ">{{ $seminar->penyelenggara }}</p>
+                                <p class="description">{{ $seminar->keterangan }}</p>
                             </div>
                         </div>
-                        <div class="card swiper-slide">
-                            <div class="image-content">
-                                <span class="overlay"></span>
-
-                                <div class="card-image-event">
-                                    <img src="{{asset('assets/')}}" alt="" class="card-img">
-                                </div>
-                            </div>
-
-                            <div class="card-content-event">
-                                <p class="tanggal">10/5/2023</p>
-                                <h2 class="nama-seminar">Seminar Bimbingan Konseling</h2>
-                                <p class="nama-univ">University Telkom</p>
-                                <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-                                    tempore, consequuntur sed aperiam aut cum?</p>
-                            </div>
-                        </div>
-                        <div class="card swiper-slide">
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image-event">
-                                        <img src="{{asset('assets/')}}" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content-event">
-                                    <p class="tanggal">10/5/2023</p>
-                                    <h2 class="nama-seminar">Seminar Bimbingan Konseling</h2>
-                                    <p class="nama-univ">University Telkom</p>
-                                    <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                        Eveniet
-                                        tempore, consequuntur sed aperiam aut cum?</p>
-                                </div>
-                            </div>
-                            <div class="card swiper-slide">
-                                <div class="image-content">
-                                    <span class="overlay"></span>
-
-                                    <div class="card-image-event">
-                                        <img src="{{asset('assets/')}}" alt="" class="card-img">
-                                    </div>
-                                </div>
-
-                                <div class="card-content-event">
-                                    <p class="tanggal">10/5/2023</p>
-                                    <h2 class="nama-seminar">Seminar Bimbingan Konseling</h2>
-                                    <p class="nama-univ">University Telkom</p>
-                                    <p class="description">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                                        Eveniet
-                                        tempore, consequuntur sed aperiam aut cum?</p>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
