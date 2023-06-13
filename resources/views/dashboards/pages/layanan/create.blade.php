@@ -5,7 +5,7 @@
 <div class="container-fluid">
     <div class="card">
         <div class="card-body">
-            <h5 class="card-title fw-semibold mb-4">Form Jurusan</h5>
+            <h5 class="card-title fw-semibold mb-4">Form Layanan</h5>
             <div class="content">
                 @if($errors->any())
                             <div class="mt-2 alert alert-danger">
