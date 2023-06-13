@@ -26,7 +26,7 @@ class Guru extends Model
     }
 
     public function bk_konsuling(){
-        return $this->hasMany(KonsulingBK::class);
+        return $this->hasMany(KonsulingBK::class, 'bk_id');
     }
 
     public function fotos(){

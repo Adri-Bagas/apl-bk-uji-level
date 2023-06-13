@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\ActivityLog;
+use App\Models\LayananBK;
+use App\Models\Siswa;
+use App\Models\Tempat;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -16,6 +19,9 @@ class DashboardController extends Controller
         $dataKelasBK = 0;
 
         $jumlahPertemuanSiswa = 0;
+
+        
+        $jumlahSiswaYangPernahBertemuBK = 0;
 
         if(auth()->user()->hasRole('admin')){
             $activityLogs = ActivityLog::all();
@@ -69,6 +75,55 @@ class DashboardController extends Controller
             'dataKelasTerorganisirUntukBK',
             'jumlahPertemuanSiswa',
             'jumlahSiswaYangPernahBertemuBK'
+        ));
+    }
+
+    public function siswaBKIndex(){
+        $kelases = auth()->user()->guru->bk_kelas;
+
+        $siswas = [];
+
+        foreach($kelases as $kelas){
+            foreach($kelas->siswas as $siswa){
+                array_push($siswas, $siswa);
+            }
+        }
+        return view('dashboards.pages.siswa.bk.index', compact('siswas'));
+    }
+
+    public function dataPerjanjianBKDenganSiswa(){
+        $KonsulingBKs = auth()->user()->guru->bk_konsuling;
+        return view('dashboards.pages.konseling.bk.index', compact('KonsulingBKs'));
+    }
+
+    public function dataPerjanjianBKDenganSiswaSesuaiLayanan($namalayanan){
+        $LayananBK = LayananBK::where('jenis_layanan', $namalayanan)->get()->first();
+        $KonsulingBKs = auth()->user()->guru->bk_konsuling->where('Layanan_BK_id', $LayananBK->id);
+        return view('dashboards.pages.konseling.bk.index', compact('KonsulingBKs', 'LayananBK'));
+    }
+
+    public function inputBimbingan($jenisLayanan){
+
+        $jenisLayanan = LayananBK::where('jenis_layanan', $jenisLayanan)->get()->first();
+        $kelases = auth()->user()->guru->bk_kelas;
+
+        if($jenisLayanan->isAllStudent == 1){
+            $siswas = Siswa::all();
+        }else{
+            $siswas = [];
+
+            foreach($kelases as $kelas){
+                foreach($kelas->siswas as $siswa){
+                    array_push($siswas, $siswa);
+                }
+            }
+        }
+
+        $tempats = Tempat::all();
+        return view('dashboards.pages.konseling.bk.inputBimbingan', compact(
+            'siswas',
+            'jenisLayanan',
+            'tempats'
         ));
     }
 }

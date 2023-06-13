@@ -9,13 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class KonsulingBKController extends Controller
 {
-    public function indexBK(){
-        $bk = auth()->user()->guru;
-
-        $konsuling = $bk->bk_konsuling;
-
-        return view('ganti nanti', compact('konsuling'));
-    }
 
     public function indexWalas(){
         $walas = auth()->user()->guru;
@@ -51,8 +44,6 @@ class KonsulingBKController extends Controller
 
         $validate = $request->validate([
             'siswas_id' => 'required',
-            'Layanan_BK_id' => 'required',
-            'bk_id' => 'required',
             'tanggal_konseling' => 'required',
             'tempat_id' => 'required',
             'ket' => 'required',

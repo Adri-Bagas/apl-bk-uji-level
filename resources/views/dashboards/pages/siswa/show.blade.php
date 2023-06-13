@@ -44,9 +44,9 @@
                 </div>
             </div>
             <a class="btn btn-warning btn-icon-text text-white " href="{{ route('siswa') }}" role="button" style="margin-left:520px; display:inline-block ">Back</a>
-
+            @hasrole('admin')
             <a class="btn btn-primary btn-icon-text text-white " href="{{ url('siswa/edit', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Edit Data</a>
-
+            @endhasrole
             <a class="btn btn-danger btn-icon-text text-white " href="{{ route('siswa') }}" role="button" style="margin-left:20px; display:inline-block ">Peta Kerawanan</a>
         </div>
     </div>
