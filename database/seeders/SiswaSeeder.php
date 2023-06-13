@@ -16,7 +16,7 @@ class SiswaSeeder extends Seeder
     public function run(): void
     {
         $faker = Faker::create();
-        for($i=0; $i < 70; $i++){ 
+        for($i=0; $i < 200; $i++){ 
             $user =  User::create([
                 'name' => $faker->name(),
                 'email' => $faker->email(),
@@ -26,7 +26,7 @@ class SiswaSeeder extends Seeder
 
             Siswa::create([
                 'user_id' => $user->id,
-                'kelas_id' => $faker->numberBetween(1, 6),
+                'kelas_id' => $faker->numberBetween(1, 10),
                 'no_telepon' => $faker->phoneNumber(),
                 'nipd' => $faker->randomNumber(5, true),
                 'nisn' => $faker->randomNumber(5, true),
