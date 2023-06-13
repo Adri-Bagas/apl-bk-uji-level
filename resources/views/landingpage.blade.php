@@ -24,12 +24,22 @@
         <h1>Starbhak.Konseling</h1>
         <nav>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Artikel</a></li>
+                <li><a href="/landingpage">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="/jadwalkonseling#event">Artikel</a></li>
             </ul>
         </nav>
-        <button class="button-nav"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
+        @if (auth()->user())
+            <button class="button-nav"><a href="/jadwalkonseling">Profile</a></button>
+            <form action="logout" method="POST">
+                @csrf
+                <button class="button-logout" style="color: white; font-weight:bold">Log Out</button>
+            </form>
+            @else
+            <button class="button-nav"><a href="/login">Login</a></button>
+
+        @endif
+        
     </header>
 
     {{-- hero --}}
@@ -53,10 +63,10 @@
             <button class="button-hero"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
         </div>
         <div class="image-hero">
-            <img src="{{asset('assets/Bu_caca-removebg.png')}}" alt="">
+            <img src="{{asset('assets/Pak ricky.jpeg')}}" alt="">
         </div>
     </div>
-    <div class="retangle" style="margin-top: 60px"></div>
+    <div class="retangle" style="margin-top: 60px"  id="about"></div>
     <div class="content">
         <p class="p1">Team kami telah <br> membantu dan menyelesaikan <br> banyak masalah di sekolah ini:</p>
     </div>
@@ -105,8 +115,7 @@
                         <div class="card-content">
                             <h2 class="name">Bu Caca
                             </h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">"Keberhasilan bukanlah akhir dari perjalanan, tetapi awal dari petualangan yang baru. Teruslah bergerak maju, teruslah mengejar impianmu, dan jangan pernah berhenti untuk menjadi versi terbaik dari dirimu sendiri."</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>
@@ -123,8 +132,7 @@
                         <div class="card-content">
                             <h2 class="name">Bu Fika
                             </h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">"Ketika kamu merasa putus asa, ingatlah bahwa batas-batas hanya ada dalam pikiranmu. Pikirkan yang positif, berjuang dengan semangat, dan taklukkan segala halangan di depanmu."</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>
@@ -141,8 +149,7 @@
                         <div class="card-content">
                             <h2 class="name">Bu Nadia
                             </h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">"Ingatlah, setiap hari adalah kesempatan baru untuk tumbuh dan berkembang. Jangan sia-siakan waktu dan peluang yang ada. Berani ambil langkah, dan dunia akan menjadi milikmu."</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>
@@ -159,8 +166,7 @@
                         <div class="card-content">
                             <h2 class="name">Bu Henny
                             </h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">"Jangan biarkan kegagalan menghalangi langkahmu. Jadikan setiap kegagalan sebagai pembelajaran dan dorongan untuk menjadi lebih baik. Kamu memiliki kekuatan untuk bangkit dan meraih kemenangan."</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>
@@ -178,8 +184,7 @@
                         <div class="card-content">
                             <h2 class="name">Mohamed Yousef
                             </h2>
-                            <p class="description">The lorem text the section that contains header with having open
-                                functionality. Lorem dolor sit amet consectetur adipisicing elit.</p>
+                            <p class="description">"Jangan biarkan ketakutan atau kegagalan menghentikanmu. Ambillah langkah kecil setiap hari menuju tujuanmu, dan satu hari nanti, kamu akan mencapai impianmu."</p>
 
                             {{-- <button class="button">View More</button> --}}
                         </div>

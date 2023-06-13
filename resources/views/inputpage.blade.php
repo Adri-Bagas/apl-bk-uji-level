@@ -25,8 +25,8 @@
         <nav>
             <ul class="nav-links">
                 <li><a href="/landingpage">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Artikel</a></li>
+                <li><a href="/landingpage#about">About</a></li>
+                <li><a href="/jadwalkonseling#event">Artikel</a></li>
             </ul>
         </nav>
         <button class="button-nav"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
