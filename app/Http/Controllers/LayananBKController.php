@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
+use App\Models\Foto;
 use App\Models\LayananBK;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class LayananBKController extends Controller
 {
@@ -19,7 +22,7 @@ class LayananBKController extends Controller
     public function index()
     {
         $layanan = LayananBK::all();
-        return view('layananBK');
+        return view('dashboards.pages.layanan.index', compact('layanan'));
     }
 
     /**
@@ -27,7 +30,7 @@ class LayananBKController extends Controller
      */
     public function create()
     {
-        return view('layananBK.create');
+        return view('dashboards.pages.layanan.create');
     }
 
     /**
@@ -36,30 +39,69 @@ class LayananBKController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
+            'keterangan' => 'required',
             'jenis_layanan' => 'required',
-            'isMultiChild' => 'required',
-            'isCareerOriented' => 'required'
+            'foto' => 'required'
         ]);
 
         $isMultiChild = false;
 
-        if($request->isMultiChild == 'ON'){
+        if($request->isMultiChild == 'on'){
             $isMultiChild = true;
+        }
+
+        $isAllStudent = false;
+
+        if($request->isAllStudent == 'on'){
+            $isAllStudent = true;
+        }
+
+        $isAvailableToSiswa = false;
+        
+        if($request->isAvailableToSiswa == 'on') {
+            $isAvailableToSiswa = true;
+        }
+
+        $isAvailableToGuru = false;
+
+        if($request->isAvailableToGuru == 'on') {
+            $isAvailableToGuru = true;
         }
 
         $isCareerOriented = false;
 
-        if($request->isCareerOriented == 'ON'){
+        if($request->isCareerOriented == 'on'){
             $isCareerOriented = true;
         }
 
         $store = LayananBK::create([
+            'keterangan' => $request->keterangan,
             'jenis_layanan' => $request->jenis_layanan,
             'isMultiChild' => $isMultiChild,
+            'isAllStudent' => $isAllStudent,
+            'isAvailableToSiswa' => $isAvailableToSiswa,
+            'isAvailableToGuru' => $isAvailableToGuru,
             'isCareerOriented' => $isCareerOriented
         ]);
+        
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/layananBK', $request->file('foto'), $store->id.'.'.$request->foto->getClientOriginalExtension()
+            );
 
-        redirect('ganti nanti');
+            Foto::create([
+                'img_location' => 'layananBK/'.$store->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'layananBK',
+                'model_id' => $store->id
+            ]);
+        }
+
+        ActivityLog::create([
+            'activity' => 'Layanan baru "' .$store->jenis_layanan.'" Di buat oleh '.auth()->user()->name
+        ]);
+
+        
+        return redirect('/layanan');
     }
 
     /**
@@ -68,7 +110,7 @@ class LayananBKController extends Controller
     public function show(string $id)
     {
         $layanan = LayananBK::findOrFail($id);
-        return view('layananBK', compact('layanan'));
+        return view('dashboards.pages.layanan.show', compact('layanan'));
     }
 
     /**
@@ -77,7 +119,7 @@ class LayananBKController extends Controller
     public function edit(string $id)
     {
         $layanan = LayananBK::findOrFail($id);
-        return view('layananBK', compact('layanan'));
+        return view('dashboards.pages.layanan.edit', compact('layanan'));
     }
 
     /**
@@ -86,32 +128,73 @@ class LayananBKController extends Controller
     public function update(Request $request, string $id)
     {
         $validate = $request->validate([
+            'keterangan' => 'required',
             'jenis_layanan' => 'required',
-            'isMultiChild' => 'required',
-            'isCareerOriented' => 'required'
         ]);
 
         $layanan = LayananBK::findOrFail($id);
 
         $isMultiChild = false;
 
-        if($request->isMultiChild == 'ON'){
+        if($request->isMultiChild == 'on'){
             $isMultiChild = true;
+        }
+
+        $isAllStudent = false;
+
+        if($request->isAllStudent == 'on'){
+            $isAllStudent = true;
+        }
+
+        $isAvailableToSiswa = false;
+        
+        if($request->isAvailableToSiswa == 'on') {
+            $isAvailableToSiswa = true;
+        }
+
+        $isAvailableToGuru = false;
+
+        if($request->isAvailableToGuru == 'on') {
+            $isAvailableToGuru = true;
         }
 
         $isCareerOriented = false;
 
-        if($request->isCareerOriented == 'ON'){
+        if($request->isCareerOriented == 'on'){
             $isCareerOriented = true;
         }
 
         $layanan->update([
+            'keterangan' => $request->keterangan,
             'jenis_layanan' => $request->jenis_layanan,
             'isMultiChild' => $isMultiChild,
+            'isAllStudent' => $isAllStudent,
+            'isAvailableToSiswa' => $isAvailableToSiswa,
+            'isAvailableToGuru' => $isAvailableToGuru,
             'isCareerOriented' => $isCareerOriented
         ]);
 
-        redirect('ganti nanti');
+
+        if($request->foto){
+            $path = Storage::putFileAs(
+                'public/layananBK', $request->file('foto'), $layanan->id.'.'.$request->foto->getClientOriginalExtension()
+            );
+
+            if(sizeof($layanan->fotos()) == 0){
+                
+            Foto::create([
+                'img_location' => 'layananBK/'.$layanan->id.'.'.$request->foto->getClientOriginalExtension(),
+                'model_type' => 'layananBK',
+                'model_id' => $layanan->id
+            ]);
+            }
+
+            ActivityLog::create([
+                'activity' => 'Layanan  "'.$layanan->jenis_layanan.'" Di edit Oleh '.auth()->user()->name
+            ]);
+        }
+
+        return redirect('/layanan');
     }
 
     /**
@@ -123,6 +206,7 @@ class LayananBKController extends Controller
 
         $layanan->delete();
 
-        redirect('ganti nanti');
+        return redirect()->route('layanan');
+    
     }
 }

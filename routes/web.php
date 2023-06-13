@@ -8,6 +8,8 @@ use App\Http\Controllers\SeminarController;
 use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\TempatController;
+use App\Http\Controllers\LayananBKController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -111,6 +113,17 @@ Route::middleware([
     Route::get('/seminar/{id}', [SeminarController::class, 'show']);
 });
 
+
+// LAYANAN
+Route::get('/layanan', [LayananBKController::class, 'index'])->name('layanan');
+Route::get('/layanan/create',[LayananBKController::class,'create']);
+Route::post('/layanan/create',[LayananBKController::class,'store']);
+Route::get('/layanan/{id}', [LayananBKController::class, 'show']);
+Route::get('/layanan/edit/{id}',[LayananBKController::class,'edit']);
+Route::put('/layanan/{id}',[LayananBKController::class,'update']);
+Route::delete('/layanan/delete/{id}',[LayananBKController::class,'destroy']);
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -122,3 +135,4 @@ Route::middleware([
     Route::get('/bk/konseling/{namaJenisLayanan}', [DashboardController::class, 'dataPerjanjianBKDenganSiswaSesuaiLayanan']);
     Route::get('/bk/konseling/input/{namaJenisLayanan}', [DashboardController::class, 'inputBimbingan']);
 });
+

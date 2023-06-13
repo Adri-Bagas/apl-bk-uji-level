@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\Foto;
 use App\Models\Seminar;
 use Illuminate\Support\Str;
@@ -48,6 +49,11 @@ class SeminarController extends Controller
             'penyelenggara' => $request->penyelenggara,
             'keterangan' => $request->keterangan
         ]);
+
+        ActivityLog::create([
+            'activity' => 'Seminar Baru "'.$seminar->judul_seminar.'" Di tambahkan oleh '.auth()->user()->name
+        ]);
+
 
         if($request->foto){
             foreach($request->foto as $key => $foto){
@@ -133,6 +139,13 @@ class SeminarController extends Controller
             }
         }
 
+
+        ActivityLog::create([
+            'activity' => 'Seminar  "'.$seminar->judul_seminar.'" Di edit Oleh '.auth()->user()->name
+        ]);
+
+
+
         return redirect()->route('seminar');
     }
 
@@ -149,6 +162,11 @@ class SeminarController extends Controller
         }
 
         $seminar->delete();
+
+
+        ActivityLog::create([
+            'activity' => 'Seminar  "'.$seminar->judul_seminar.'" Di Hapus Oleh '.auth()->user()->name
+        ]);
 
         return redirect()->route('seminar');
     }

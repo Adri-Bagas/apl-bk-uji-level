@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\JenisKerawanan;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,10 @@ class JenisKerawananController extends Controller
             'jenis_kerawanan' => $request->jenis_kerawanan
         ]);
 
+        ActivityLog::create([
+            'activity' => 'Jenis Kerawanan Baru "'.$jenisKerawanan->jenis_kerawanan.'" Dibuat oleh '.auth()->user()->name
+        ]);
+
         return redirect('jeniskerawanan');
     }
 
@@ -81,6 +86,10 @@ class JenisKerawananController extends Controller
             'jenis_kerawanan' => $request->jenis_kerawanan
         ]);
 
+        ActivityLog::create([
+            'activity' => 'Jenis Kerawanan  "'.$jenisKerawanan->jenis_kerawanan.'" Di edit Oleh '.auth()->user()->name
+        ]);
+
         return redirect('jeniskerawanan');
     }
 
@@ -92,6 +101,10 @@ class JenisKerawananController extends Controller
         $jenisKerawanan = JenisKerawanan::find($id);
 
         $jenisKerawanan->delete();
+
+        ActivityLog::create([
+            'activity' => 'Jenis Kerawanan  "'.$jenisKerawanan->jenis_kerawanan.'" Di Hapus Oleh '.auth()->user()->name
+        ]);
 
         return redirect('jeniskerawanan');
     }
