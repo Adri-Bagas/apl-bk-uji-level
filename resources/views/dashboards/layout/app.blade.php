@@ -8,6 +8,7 @@
 
     <link rel="shortcut icon" type="image/png" href="{{ asset('dashboards') }}/images/logos/favicon.png" />
     <link rel="stylesheet" href="{{ asset('dashboards') }}/css/styles.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" />
 
 </head>
@@ -30,6 +31,7 @@
     <script src="{{ asset('dashboards') }}/js/app.min.js"></script>
     <script src="{{ asset('dashboards') }}/libs/simplebar/dist/simplebar.js"></script>
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
 </body>
 
 @yield('scriptJS')

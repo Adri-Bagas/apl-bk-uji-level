@@ -14,4 +14,12 @@ class KonsulingBK extends Model
     public function siswas(){
         return $this->belongsToMany(Siswa::class, 'siswa_konsuling', 'konsuling_b_k_id', 'siswa_id');
     }
+
+    public function layananBK(){
+        return $this->belongsTo(LayananBK::class, 'Layanan_BK_id');
+    }
+
+    public function tempat(){
+        return $this->belongsTo(Tempat::class);
+    }
 }

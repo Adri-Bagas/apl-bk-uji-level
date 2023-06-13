@@ -25,10 +25,10 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
-                
+                @hasrole('admin')
                 <li class="nav-small-cap">
                     <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
-                    <span class="hide-menu">Menu</span>
+                    <span class="hide-menu">Admin</span>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('jurusan') }}" aria-expanded="false">
@@ -54,6 +54,7 @@
                         <span class="hide-menu">Guru</span>
                     </a>
                 </li>
+
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('siswa') }}" aria-expanded="false">
                         <span>
@@ -100,6 +101,44 @@
                     </a>
                 </li>
                 
+                @endhasrole
+
+            @hasrole('bk')
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">BK</span>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ url('bk/siswa') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Siswa</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ url('bk/konseling') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Jadwal Konseling</span>
+                </a>
+            </li>
+
+            @foreach(\App\Models\LayananBK::all() as $item)
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ url('bk/konseling', $item->jenis_layanan) }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">{{ $item->jenis_layanan }}</span>
+                </a>
+            </li>
+            @endforeach
+
+            @endhasrole
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
