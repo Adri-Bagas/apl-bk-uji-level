@@ -29,11 +29,9 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        $siswa = Siswa::all();
         $kelas = Kelas::all();
-
         
-        return view('dashboards.pages.siswa.create', compact('siswa', 'kelas'));
+        return view('dashboards.pages.siswa.create', compact('kelas'));
     }
 
     /**

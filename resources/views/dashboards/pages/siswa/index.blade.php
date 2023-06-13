@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-body">
             <h5 class="card-title fw-semibold mb-4">Siswa</h5>
-            <a class="btn btn-primary btn-icon-text text-white btn-sm" href="{{ url('siswa/create') }}" role="button"
+            <a class="btn btn-primary btn-icon-text text-white btn-sm" href="{{route('create-siswa')}}" role="button"
                 style="margin-bottom:20px; display:inline-block ">Tambah Data</a>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>

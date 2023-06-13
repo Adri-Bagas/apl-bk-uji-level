@@ -80,7 +80,7 @@ Route::middleware([
 
     // SISWA 
     Route::get('/siswa', [SiswaController::class, 'index'])->name('siswa');
-    Route::get('/siswa/create', [SiswaController::class, 'create']);
+    Route::get('/create-siswa', [SiswaController::class, 'create'])->name('create-siswa');
     Route::post('/siswa/create', [SiswaController::class, 'store']);
     Route::delete('/siswa/delete/{id}', [SiswaController::class, 'destroy']);
     Route::get('/siswa/edit/{id}', [SiswaController::class, 'edit']);
