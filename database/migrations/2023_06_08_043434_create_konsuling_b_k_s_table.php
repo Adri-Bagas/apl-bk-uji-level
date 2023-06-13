@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('tempat_id')->constrained('tempats');
             $table->string('ket')->nullable();
             $table->string('hasil Konseling')->nullable();
-            $table->string('status');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

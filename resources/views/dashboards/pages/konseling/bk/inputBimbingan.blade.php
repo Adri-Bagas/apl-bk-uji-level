@@ -45,6 +45,7 @@
                             @endforeach
                         </select>
                     </div>
+
                     @if($jenisLayanan->isCareerOriented == 1)
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Karir</label>
@@ -55,6 +56,11 @@
                         </select>
                     </div>
                     @endif
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Keterangan</label>
+                        <textarea name="ket" cols="30" rows="10" name="ket" class="form-control">{{ old('ket') }}</textarea>
+                    </div>
 
                     <table>
                         <tr>
