@@ -46,6 +46,7 @@
                       <div class="mb-3" >
                         <label for="exampleInputEmail1" class="form-label">Roles</label>
                             <select class="form-select" name="roles[]" id="roles" multiple>
+                              <option value="admin">Admin</option>
                                 <option value="bk">BK</option>
                                 <option value="walas">Walas</option>
                           </select>

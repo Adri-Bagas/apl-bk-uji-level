@@ -33,7 +33,16 @@
         </nav>
 
 
-        <button class="button-nav"><a href="/jadwalkonseling">Jadwal Konseling</a></button>
+        @if (auth()->user())
+            <button class="button-nav"><a href="/jadwalkonseling">Profile</a></button>
+            <form action="logout" method="POST">
+                @csrf
+                <button class="button-logout" style="color: white; font-weight:bold">Log Out</button>
+            </form>
+            @else
+            <button class="button-nav"><a href="/login">Login</a></button>
+
+        @endif
     </header>
 
     {{-- content --}}
@@ -56,37 +65,15 @@
     <div class="content-form">
         <div class="content-scroll">
             <div class="content-form-flex">
+                @foreach($jenisLayanan as $jenis)
                 <div class="card card-select" data-cardSelect>
-                    <img src="{{asset('assets/Personal data-pana.png')}}">
+                    <img src="{{ $jenis->fotos()->first() ? asset('storage/'.$jenis->fotos()->first()->img_location) : '' }}" style="">
                     <div class="card-section">
-                        <h5>Bimbingan Pribadi</h5>
+                        <h5>{{ $jenis->jenis_layanan }}</h5>
                     </div>
-                    <a class="button" data-cardSelectButton href="/inputpage"></a>
+                    <a class="button" data-cardSelectButton href="{{ url('input', $jenis->jenis_layanan) }}"></a>
                 </div>
-
-                <div class="card card-select" data-cardSelect>
-                    <img src="{{asset('assets/Social interaction-bro.png')}}">
-                    <div class="card-section">
-                        <h5>Bimbingan Sosial</h5>
-                    </div>
-                    <a class="button" data-cardSelectButton href="/inputpage"></a>
-                </div>
-
-                <div class="card card-select" data-cardSelect>
-                    <img src="{{asset('assets/At the office-rafiki.png')}}">
-                    <div class="card-section">
-                        <h5>Bimbingan Karir</h5>
-                    </div>
-                    <a class="button" data-cardSelectButton href="/inputpage"></a>
-                </div>
-
-                <div class="card card-select" data-cardSelect>
-                    <img src="{{asset('assets/Kids Studying from Home-bro.png')}}">
-                    <div class="card-section">
-                        <h5>Bimbingan Belajar</h5>
-                    </div>
-                    <a class="button" data-cardSelectButton href="/inputpage"></a>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -110,7 +97,6 @@
                         <th class="th-sm">Tempat</th>
                         <th class="th-sm">Guru</th>
                         <th class="th-sm">Status</th>
-                        <th class="th-sm">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -126,17 +112,6 @@
                         </td>
                         <td>
                             {{ $KonsulingBK->status }}
-                        </td>
-                        <td>
-                            @if($KonsulingBK->status == "PENDING")
-                            <div class="btn-form" style="display: flex">
-                                <a href="" class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Accept</a> 
-
-                                <a class="btn btn-danger btn-icon-text text-white btn-sm">Reschedule</a>
-                            </div>
-                            @else
-                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" disabled>Tulis Hasil</a> 
-                            @endif
                         </td>
                     </tr>
                     @endforeach

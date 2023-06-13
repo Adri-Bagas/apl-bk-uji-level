@@ -17,7 +17,29 @@ class DashboardController extends Controller
 
         $seminars = Seminar::all();
 
-        return view('jadwalkonseling',compact('seminars'));
+        $jenisLayanan = LayananBK::all();
+
+        return view('jadwalkonseling',compact('seminars', 'jenisLayanan'));
+    }
+
+    public function inputBuatSiswa($jenislayanan){
+        $jenisLayanan = LayananBK::where('jenis_layanan', $jenislayanan)->get()->first();
+        $kelases = auth()->user()->siswa->kelas;
+
+        if($jenisLayanan->isAllStudent == 1 ){
+            $siswas = Siswa::all();
+        }else if($jenisLayanan->isMultiChild == 1){
+            $siswas = $kelases->siswas;
+        }else{
+            $siswas = auth()->user()->siswa;
+        }
+
+        $tempats = Tempat::all();
+        return view('inputpage', compact(
+            'siswas',
+            'jenisLayanan',
+            'tempats'
+        ));
     }
 
     public function index(){

@@ -11,7 +11,7 @@ use App\Http\Controllers\KonsulingBKController;
 use App\Http\Controllers\TempatController;
 use App\Http\Controllers\LayananBKController;
 use Illuminate\Support\Facades\Route;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -135,6 +135,12 @@ Route::middleware([
     Route::get('/bk/konseling/{namaJenisLayanan}', [DashboardController::class, 'dataPerjanjianBKDenganSiswaSesuaiLayanan']);
     Route::get('/bk/konseling/input/{namaJenisLayanan}', [DashboardController::class, 'inputBimbingan']);
     Route::post('/bk/konseling/input/{namaJenisLayanan}', [KonsulingBKController::class, 'simpanKonsuling']);
+    Route::get('/bk/konseling/input/reschedule/{id}',[KonsulingBKController::class, 'viewReschedule']);
+    Route::post('/bk/konseling/input/reschedule/{id}',[KonsulingBKController::class, 'menundaPengajuan']);
+    Route::post('/bk/konseling/accept/{id}',[KonsulingBKController::class, 'menerimaPengajuan']);
+    Route::get('/bk/konseling/catat/{id}',[KonsulingBKController::class, 'tampilanHasil']);
+    Route::post('/bk/konseling/catat/{id}',[KonsulingBKController::class, 'mencatatHasil']);
+    Route::get('/bk/konseling/detail/{id}',[KonsulingBKController::class, 'detailKonsul']);
 });
 
 Route::middleware([
@@ -143,10 +149,8 @@ Route::middleware([
     'verified',
     'role:siswa'
 ])->group(function () {
-    
     Route::get('/jadwalkonseling', [DashboardController::class, 'tampilansiswa']);
-    Route::get('/inputpage', function () {
-        return view('inputpage');
-    });
+    Route::get('/input/{namaLayanan}', [DashboardController::class, 'inputBuatSiswa']);
+    Route::post('/input/{namaLayanan}', [KonsulingBKController::class, 'simpanKonsuling']);
 });
 

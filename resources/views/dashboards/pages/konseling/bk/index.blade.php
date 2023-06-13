@@ -51,12 +51,17 @@
                         <td>
                             @if($KonsulingBK->status == "PENDING")
                             <div class="btn-form" style="display: flex">
-                                <a href="" class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Accept</a> 
+                                <form action="{{ url('bk/konseling/accept', $KonsulingBK->id) }}" method="POST">
+                                    @csrf
+                                    <button class="btn btn-warning  btn-sm" style="display: inline-block; margin-right: 10px">Accept</button> 
+                                </form>
 
-                                <a class="btn btn-danger btn-icon-text text-white btn-sm">Reschedule</a>
+                                <a class="btn btn-danger btn-icon-text text-white btn-sm" href="{{ url('/bk/konseling/input/reschedule', $KonsulingBK->id) }}">Reschedule</a>
                             </div>
+                            @elseif($KonsulingBK->status == "DONE")
+                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/detail', $KonsulingBK->id) }}">Show</a> 
                             @else
-                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" disabled>Tulis Hasil</a> 
+                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/catat', $KonsulingBK->id) }}">Tulis Hasil</a> 
                             @endif
                         </td>
                     </tr>

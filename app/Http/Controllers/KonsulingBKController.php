@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\KonsulingBK;
 use App\Models\LayananBK;
 use App\Models\PengajuanKonseling;
+use App\Models\Tempat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -44,10 +45,9 @@ class KonsulingBKController extends Controller
     public function simpanKonsuling(Request $request, $namaLayanan){
         $LayananBK = LayananBK::where('jenis_layanan', $namaLayanan)->get()->first();
         $validate = $request->validate([
-            'siswas_id' => 'required',
             'tanggal_konseling' => 'required',
+            'waktu_konseling' => 'required',
             'tempat_id' => 'required',
-            'ket' => 'required',
         ]);
         
         $Konsuling = KonsulingBK::create([
@@ -58,6 +58,12 @@ class KonsulingBKController extends Controller
             'tempat_id' => $request->tempat_id,
             'ket' => auth()->user()->profile_type == 'guru' ? $request->ket : '',
         ]);
+
+        if($LayananBK->isCareerOriented == 1){
+            $Konsuling->update([
+                'option'=>$request->karir
+            ]);
+        }
 
         if(auth()->user()->profile_type == 'guru'){
             $Konsuling->update([
@@ -72,6 +78,7 @@ class KonsulingBKController extends Controller
 
             $Pengajuan = PengajuanKonseling::create([
                 'siswa_id' => auth()->user()->siswa->id,
+                'konsuling_b_k_s_id'=> $Konsuling->id,
                 'alasan' => $request->alasan
             ]);
 
@@ -81,13 +88,15 @@ class KonsulingBKController extends Controller
             ]);
         }
 
-        foreach($request->siswas_id as $siswa){
-            DB::table('siswa_konsuling')->insert([
-                'siswa_id' => $siswa,
-                'konsuling_b_k_id' => $Konsuling->id
-            ]);
+        if($LayananBK->isMultiChild == 1 || auth()->user()->profile_type == 'guru'){
+            foreach($request->siswas_id as $siswa){
+                DB::table('siswa_konsuling')->insert([
+                    'siswa_id' => $siswa,
+                    'konsuling_b_k_id' => $Konsuling->id
+                ]);
+            }
         }
-
+        
         if(auth()->user()->profile_type == 'guru'){
             return redirect('/bk/konseling');
         }else{
@@ -102,7 +111,14 @@ class KonsulingBKController extends Controller
             'status' => 'ACCEPTED'
         ]);
 
-        return 'ganti nanti';
+        return redirect()->back();
+    }
+
+    public function viewReschedule($id){
+        $Konsuling = KonsulingBK::find($id);
+        $tempats = Tempat::all();
+
+        return view('dashboards.pages.konseling.bk.reschedule', compact('Konsuling', 'tempats'));
     }
 
     public function menundaPengajuan(Request $request, $id){
@@ -121,10 +137,16 @@ class KonsulingBKController extends Controller
             'waktu_konseling' => $request->waktu_konseling,
             'tempat_id' => $request->tempat_id,
             'ket' => $request->ket,
-            'status' => 'ADJUORNED',
+            'status' => 'ACCEPTED',
         ]);
 
-        return 'ganti nanti';
+        return redirect('/bk/konseling');
+    }
+
+    public function tampilanHasil($id){
+        $Konsuling = KonsulingBK::find($id);
+
+        return view('dashboards.pages.konseling.bk.catatHasil', compact('Konsuling'));
     }
 
     public function mencatatHasil(Request $request, $id){
@@ -135,9 +157,17 @@ class KonsulingBKController extends Controller
         $Konsuling = KonsulingBK::find($id);
 
         $Konsuling->update([
-            'hasil' => $request->hasil
+            'hasil_koseling' => $request->hasil,
+            'status' => "DONE"
         ]);
 
-        return 'ganti nanti';
+        return redirect('/bk/konseling');
+    }
+
+    public function detailKonsul($id){
+        $Konsuling = KonsulingBK::find($id);
+        $jenisLayanan = $Konsuling->layananBK;
+
+        return view('dashboards.pages.konseling.bk.detailBimbingan', compact('Konsuling', 'jenisLayanan'));
     }
 } 

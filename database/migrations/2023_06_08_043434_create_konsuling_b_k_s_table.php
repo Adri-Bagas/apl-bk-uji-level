@@ -19,7 +19,7 @@ return new class extends Migration
             $table->time('waktu_konseling')->nullable();
             $table->foreignId('tempat_id')->constrained('tempats');
             $table->string('ket')->nullable();
-            $table->string('hasil Konseling')->nullable();
+            $table->string('hasil_konseling')->nullable();
             $table->string('status')->nullable();
             $table->timestamps();
         });
