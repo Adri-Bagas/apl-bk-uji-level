@@ -31,8 +31,19 @@ class AuthController extends Controller
 
         $konsuling = $siswa->konsulings;
 
-        return response()->json([
+        $arr = []; 
 
+        foreach($konsuling as $item){
+            array_push($arr, [
+                'nama_guru' => $item->bk->user->name,
+                'tanggal' => $item->tanggal_konseling,
+                'waktu' => $item->waktu_konseling,
+                'tipeBimbingan' => $item->layananBK->,
+                ''
+            ]);
+        }
+        return response()->json([
+            
         ]);
     }
 }

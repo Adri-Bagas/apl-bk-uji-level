@@ -63,7 +63,9 @@
             @hasrole('admin')
             <a class="btn btn-primary btn-icon-text text-white " href="{{ url('siswa/edit', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Edit Data</a>
             @endhasrole
+            @hasrole('bk')
             <a class="btn btn-danger btn-icon-text text-white " href="{{ route('petakerawanan', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Peta Kerawanan</a>
+            @endhasrole
             <a class="btn btn-danger btn-icon-text text-white " href="{{ url('petakerawanan/hasil', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Catat hasil</a>
         </div>
     </div>
