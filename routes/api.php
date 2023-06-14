@@ -19,4 +19,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/auth/login', [AuthController::class, 'Login']);
+
+Route::post('auth/login', [AuthController::class, 'Login']);
+
+Route::get('datas/konsuling/id{}', [AuthController::class, 'getDataKonselingSiswa']);
+

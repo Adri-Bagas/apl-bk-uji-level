@@ -50,6 +50,7 @@
                         </td>
                         <td>
                             @if($KonsulingBK->status == "PENDING")
+                            @hasrole('bk')
                             <div class="btn-form" style="display: flex">
                                 <form action="{{ url('bk/konseling/accept', $KonsulingBK->id) }}" method="POST">
                                     @csrf
@@ -58,10 +59,13 @@
 
                                 <a class="btn btn-danger btn-icon-text text-white btn-sm" href="{{ url('/bk/konseling/input/reschedule', $KonsulingBK->id) }}">Reschedule</a>
                             </div>
+                            @endhasrole
                             @elseif($KonsulingBK->status == "DONE")
                             <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/detail', $KonsulingBK->id) }}">Show</a> 
                             @else
-                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/catat', $KonsulingBK->id) }}">Tulis Hasil</a> 
+                            @hasrole('bk')
+                            <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/catat', $KonsulingBK->id) }}">Tulis Hasil</a>
+                            @endhasrole
                             @endif
                         </td>
                     </tr>
