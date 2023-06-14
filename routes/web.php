@@ -10,7 +10,9 @@ use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\KonsulingBKController;
 use App\Http\Controllers\TempatController;
 use App\Http\Controllers\LayananBKController;
+use App\Http\Controllers\PetakerawananController;
 use App\Http\Controllers\WalasController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,6 +37,10 @@ Route::get('/landingpage', function () {
 Route::get('/inputpage', function () {
     return view('inputpage');
 });
+Route::get('/petakerawanan/{id}', [PetakerawananController::class, 'create'])->name('petakerawanan');
+Route::post('/petakerawanan/{id}', [PetakerawananController::class, 'store']);
+Route::get('/petakerawanan/hasil/{id}', [PetakerawananController::class, 'createHasil']);
+Route::post('/petakerawanan/hasil/{id}', [PetakerawananController::class, 'storeHasil']);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

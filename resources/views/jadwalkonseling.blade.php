@@ -49,7 +49,7 @@
     <div class="container-profile">
         <div class="container-2">
             <div class="card-image">
-                <img src="{{ auth()->user()->siswa->fotos()->first() ? asset('storage/'.auth()->user()->siswa->fotos()->first()->img_location) : ''}}" class="card-img" alt="">
+                <img src="{{ auth()->user()->siswa->fotos()->first() ? asset('storage/'.auth()->user()->siswa->fotos()->first()->img_location) : 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.bolasport.com%2Fread%2F313624522%2Fsaking-nganggurnya-cristiano-ronaldo-sampai-ditawarkan-ke-tiap-tim-yang-main-di-liga-champions&psig=AOvVaw3SBcOCRly1jMMTtyskvIey&ust=1686793492671000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCPjVmMnRwf8CFQAAAAAdAAAAABAE'}}" class="card-img" alt="">
 
                 <div class="card-content">
                     <p class="nama">{{ auth()->user()->name }}</p>
