@@ -40,6 +40,22 @@
                         <input type="text" name="nipd" class="form-control" placeholder="Nipd" value="{{ $siswa->nipd}}" readonly>
                     </div>
 
+                    @if(isset($siswa->kerawanans))
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Peta Kerawanan</label>
+                        <ul style="list-style-type: circle;">
+                            @foreach($siswa->kerawanans as $item)
+                            <li>{{ $item->jenis_kerawanan }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
+
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Catat Hasil</label>
+                        <textarea cols="30" rows="10" name="hasil" class="form-control" readonly>{{ $siswa->hasilKerawanan ? $siswa->hasilKerawanan->hasil : ''  }}</textarea>
+                    </div>
+
                     
                 </div>
             </div>
@@ -47,7 +63,8 @@
             @hasrole('admin')
             <a class="btn btn-primary btn-icon-text text-white " href="{{ url('siswa/edit', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Edit Data</a>
             @endhasrole
-            <a class="btn btn-danger btn-icon-text text-white " href="{{ route('siswa') }}" role="button" style="margin-left:20px; display:inline-block ">Peta Kerawanan</a>
+            <a class="btn btn-danger btn-icon-text text-white " href="{{ route('petakerawanan', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Peta Kerawanan</a>
+            <a class="btn btn-danger btn-icon-text text-white " href="{{ url('petakerawanan/hasil', $siswa->id) }}" role="button" style="margin-left:20px; display:inline-block ">Catat hasil</a>
         </div>
     </div>
 </div>

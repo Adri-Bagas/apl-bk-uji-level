@@ -29,5 +29,13 @@ class Siswa extends Model
         return $foto;
     }
 
+    public function kerawanans(){
+        return $this->belongsToMany(JenisKerawanan::class, 'siswa_kerawanan', 'siswa_id', 'jenis_kerawanan_id');
+    }
+
+    public function hasilKerawanan(){
+        return $this->hasOne(HasilKerawanan::class, 'siswa_id');
+    }
+
 }
 
