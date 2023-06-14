@@ -83,14 +83,6 @@
                 </li>
                 
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('seminar') }}" aria-expanded="false">
-                        <span>
-                            <i class="ti ti-palette"></i>
-                        </span>
-                        <span class="hide-menu">Seminar</span>
-                    </a>
-                </li>
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('layanan') }}" aria-expanded="false">
@@ -127,6 +119,7 @@
                 </a>
             </li>
 
+
             @foreach(\App\Models\LayananBK::all() as $item)
             <li class="sidebar-item">
                 <a class="sidebar-link" href="{{ url('bk/konseling', $item->jenis_layanan) }}" aria-expanded="false">
@@ -137,6 +130,41 @@
                 </a>
             </li>
             @endforeach
+
+            <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('seminar') }}" aria-expanded="false">
+                        <span>
+                            <i class="ti ti-palette"></i>
+                        </span>
+                        <span class="hide-menu">Seminar</span>
+                    </a>
+                </li>
+
+            @endhasrole
+
+            @hasrole('walas')
+            <li class="nav-small-cap">
+                <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                <span class="hide-menu">Walas</span>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ url('/walas/siswa') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Siswa</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="{{ url('/walas/siswa/konseling') }}" aria-expanded="false">
+                    <span>
+                        <i class="ti ti-user"></i>
+                    </span>
+                    <span class="hide-menu">Jadwal Konseling</span>
+                </a>
+            </li>
 
             @endhasrole
             </ul>

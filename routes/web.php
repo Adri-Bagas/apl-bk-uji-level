@@ -10,6 +10,7 @@ use App\Http\Controllers\JenisKerawananController;
 use App\Http\Controllers\KonsulingBKController;
 use App\Http\Controllers\TempatController;
 use App\Http\Controllers\LayananBKController;
+use App\Http\Controllers\WalasController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -35,13 +36,19 @@ Route::get('/inputpage', function () {
     return view('inputpage');
 });
 
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
+    'role:admin|bk|walas'
 ])->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/siswa/{id}', [SiswaController::class, 'show']);
+    Route::get('/guru/edit/{id}', [GuruController::class, 'edit']);
+    Route::put('/guru/{id}', [GuruController::class, 'update']);
+    Route::get('/bk/konseling/detail/{id}',[KonsulingBKController::class, 'detailKonsul']);
 });
 
 Route::middleware([
@@ -73,8 +80,6 @@ Route::middleware([
     Route::get('/guru/create', [GuruController::class, 'create']);
     Route::post('/guru/create', [GuruController::class, 'store']);
     Route::delete('/guru/delete/{id}', [GuruController::class, 'destroy']);
-    Route::get('/guru/edit/{id}', [GuruController::class, 'edit']);
-    Route::put('/guru/{id}', [GuruController::class, 'update']);
     Route::get('/guru/{id}', [GuruController::class, 'show']);
 
 
@@ -102,19 +107,7 @@ Route::middleware([
     Route::put('/jeniskerawanan/edit/{id}', [JenisKerawananController::class, 'update']);
     Route::delete('/jeniskerawanan/delete/{id}', [JenisKerawananController::class, 'destroy']);
 
-
-    // SEMINAR
-    Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar');
-    Route::get('/seminar/create', [SeminarController::class, 'create']);
-    Route::post('/seminar/create', [SeminarController::class, 'store']);
-    Route::delete('/seminar/delete/{id}', [SeminarController::class, 'destroy']);
-    Route::get('/seminar/edit/{id}', [SeminarController::class, 'edit']);
-    Route::put('/seminar/{id}', [SeminarController::class, 'update']);
-    Route::get('/seminar/{id}', [SeminarController::class, 'show']);
-});
-
-
-// LAYANAN
+    // LAYANAN
 Route::get('/layanan', [LayananBKController::class, 'index'])->name('layanan');
 Route::get('/layanan/create',[LayananBKController::class,'create']);
 Route::post('/layanan/create',[LayananBKController::class,'store']);
@@ -122,6 +115,10 @@ Route::get('/layanan/{id}', [LayananBKController::class, 'show']);
 Route::get('/layanan/edit/{id}',[LayananBKController::class,'edit']);
 Route::put('/layanan/{id}',[LayananBKController::class,'update']);
 Route::delete('/layanan/delete/{id}',[LayananBKController::class,'destroy']);
+
+});
+
+
 
 
 Route::middleware([
@@ -140,7 +137,15 @@ Route::middleware([
     Route::post('/bk/konseling/accept/{id}',[KonsulingBKController::class, 'menerimaPengajuan']);
     Route::get('/bk/konseling/catat/{id}',[KonsulingBKController::class, 'tampilanHasil']);
     Route::post('/bk/konseling/catat/{id}',[KonsulingBKController::class, 'mencatatHasil']);
-    Route::get('/bk/konseling/detail/{id}',[KonsulingBKController::class, 'detailKonsul']);
+
+        // SEMINAR
+        Route::get('/seminar', [SeminarController::class, 'index'])->name('seminar');
+        Route::get('/seminar/create', [SeminarController::class, 'create']);
+        Route::post('/seminar/create', [SeminarController::class, 'store']);
+        Route::delete('/seminar/delete/{id}', [SeminarController::class, 'destroy']);
+        Route::get('/seminar/edit/{id}', [SeminarController::class, 'edit']);
+        Route::put('/seminar/{id}', [SeminarController::class, 'update']);
+        Route::get('/seminar/{id}', [SeminarController::class, 'show']);
 });
 
 Route::middleware([
@@ -152,5 +157,16 @@ Route::middleware([
     Route::get('/jadwalkonseling', [DashboardController::class, 'tampilansiswa']);
     Route::get('/input/{namaLayanan}', [DashboardController::class, 'inputBuatSiswa']);
     Route::post('/input/{namaLayanan}', [KonsulingBKController::class, 'simpanKonsuling']);
+});
+
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+    'role:walas'
+])->group(function () {
+    Route::get('/walas/siswa', [WalasController::class, 'getAllDataSiswaFromKelas']);
+    Route::get('/walas/siswa/konseling', [WalasController::class, 'getAllDataSiswaFromKelas']);
 });
 
