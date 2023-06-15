@@ -13,6 +13,14 @@
                 @endif
             @else
             @endif
+            @if(!isset($LayananBK))
+            @hasrole('bk')
+            
+            <a class="btn btn-success btn-icon-text text-white btn-sm" href="{{ url('export2') }}" role="button"
+                    style="margin-bottom:20px; display:inline-block ">Export</a>
+            
+            @endhasrole
+            @endif
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -49,6 +57,7 @@
                             {{ $KonsulingBK->status }}
                         </td>
                         <td>
+                            @if($KonsulingBK->bk_id == auth()->user()->guru->id)
                             @if($KonsulingBK->status == "PENDING")
                             @hasrole('bk')
                             <div class="btn-form" style="display: flex">
@@ -66,6 +75,7 @@
                             @hasrole('bk')
                             <a class="btn btn-primary  btn-sm" style="display: inline-block; margin-right: 10px" href="{{ url('/bk/konseling/catat', $KonsulingBK->id) }}">Tulis Hasil</a>
                             @endhasrole
+                            @endif
                             @endif
                         </td>
                     </tr>

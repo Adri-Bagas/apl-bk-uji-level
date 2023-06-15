@@ -15,12 +15,14 @@ class WalasController extends Controller
     public function getAllSiswaSchedule(){
         $siswas = auth()->user()->guru->walas_kelas->siswas;
 
-        $konselingBKs = [];
+        $KonsulingBKs = [];
 
-        foreach($siswas->konselings as $item){
-            array_push($konselingBKs, $item);
+        foreach($siswas as $item){
+            foreach($item->konsulings as $konsuling){
+                array_push($KonsulingBKs, $konsuling);
+            }
         }
 
-        return view('dashboards.pages.konseling.bk.index', compact('konselingBKs'));
+        return view('dashboards.pages.konseling.bk.index', compact('KonsulingBKs'));
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\LaporansExport;
+use App\Exports\LaporansBKExport;
 use App\Models\Jurusan;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
@@ -10,56 +11,26 @@ use Illuminate\Http\Request;
 class ExportController extends Controller
 {
     public function test_data(){
+        $kelases = auth()->user()->guru->bk_kelas;
 
-        $jurusan = Jurusan::all();
+        $array = [];
 
-        $jurusanKelas = [];
-
-        $jumlahSiswaPerJurusan = [];
-
-        $jumlahPertemuanSiswaPerJurusan = [];
-
-        foreach($jurusan as $item){
-            foreach ($item->kelas as $kelas) {
-                if (!array_key_exists($item->nama, $jurusanKelas)) {
-                    $jurusanKelas[$item->nama] = [];
-                }
-                $jurusanKelas[$item->nama][] = $kelas;
+        foreach($kelases as $kelas){
+            foreach($kelas->siswas as $siswa){
+                array_push($array, $siswa);
             }
         }
 
-        foreach($jurusanKelas as $key => $datas){
-            foreach($datas as $data){
-                if (!array_key_exists($key, $jumlahSiswaPerJurusan)) {
-                    $jumlahSiswaPerJurusan[$key] = 0;
-                }
-                $jumlahSiswaPerJurusan[$key] += $data->siswas->count();
-            }
-        }
-
-        foreach($jurusanKelas as $key => $datas){
-            foreach($datas as $data){
-                if (!array_key_exists($key, $jumlahPertemuanSiswaPerJurusan)) {
-                    $jumlahPertemuanSiswaPerJurusan[$key] = 0;
-                }
-                foreach($data->siswas as $item){
-                    $jumlahPertemuanSiswaPerJurusan[$key] += $item->konsulings->count();
-                }
-            }
-        }
-
-        $keys = [];
-
-        foreach($jurusan as $item){
-            array_push($keys, $item->nama);
-        }
-
-
-        return view('exports.laporans', compact('keys', 'jumlahSiswaPerJurusan', 'jumlahPertemuanSiswaPerJurusan'));
+        return dd($array);
     }
 
     public function export() 
     {
         return Excel::download(new LaporansExport, 'laporanJurusan.xlsx');
+    }
+
+    public function export2() 
+    {
+        return Excel::download(new LaporansBKExport, 'laporanBK.xlsx');
     }
 }

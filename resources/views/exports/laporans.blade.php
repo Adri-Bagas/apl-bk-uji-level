@@ -6,9 +6,9 @@
     <title>Document</title>
     <style>
     table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
 
 </style>
 </head>
@@ -34,7 +34,7 @@
             <td style="text-align: center;">{{ $key }}</td>
             <td style="text-align: center;">{{ $jumlahSiswaPerJurusan[$key] }}</td>
             <td style="text-align: center;">{{ $jumlahPertemuanSiswaPerJurusan[$key] }}</td>
-            <td style="text-align: center;">{{  round($jumlahPertemuanSiswaPerJurusan[$key] / $jumlahSiswaPerJurusan[$key], 2) }}</td>
+            <td style="text-align: center;">{{  round(($jumlahPertemuanSiswaPerJurusan[$key] / $jumlahSiswaPerJurusan[$key]) * 100, 2) }}%</td>
         </tr>
         @endforeach
     </tbody>
@@ -43,7 +43,7 @@
             <td colspan="2" style="background-color: #B9D0FF;">Jumlah Keseluruhan</td>
             <td style="background-color: #B9D0FF; text-align: center;">{{ $jumlah_siswa }}</td>
             <td style="background-color: #B9D0FF; text-align: center;">{{ $jumlah_pertemuan }}</td>
-            <td style="background-color: #B9D0FF; text-align: center;">{{ round($jumlah_pertemuan / $jumlah_siswa, 2) }}</td>
+            <td style="background-color: #B9D0FF; text-align: center;">{{ round(($jumlah_pertemuan / $jumlah_siswa)*100, 2) }}%</td>
         </tr>
     </tfoot>
 </table>

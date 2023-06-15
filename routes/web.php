@@ -174,8 +174,9 @@ Route::middleware([
     'role:walas'
 ])->group(function () {
     Route::get('/walas/siswa', [WalasController::class, 'getAllDataSiswaFromKelas']);
-    Route::get('/walas/siswa/konseling', [WalasController::class, 'getAllDataSiswaFromKelas']);
+    Route::get('/walas/siswa/konseling', [WalasController::class, 'getAllSiswaSchedule']);
 });
 
 Route::get('test-data',[ExportController::class, 'test_data']);
 Route::get('export', [ExportController::class, 'export']);
+Route::get('export2', [ExportController::class, 'export2']);
