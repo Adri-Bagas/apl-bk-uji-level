@@ -7,6 +7,8 @@
             <h5 class="card-title fw-semibold mb-4">Jurusan</h5>
             <a class="btn btn-primary btn-icon-text text-white btn-sm" href="{{ url('jurusan/create') }}" role="button"
                 style="margin-bottom:20px; display:inline-block ">Tambah Data</a>
+                <a class="btn btn-success btn-icon-text text-white btn-sm" href="{{ url('export') }}" role="button"
+                style="margin-bottom:20px; display:inline-block ">Export stat pertemuan</a>
             <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                 <thead>
                     <tr>
