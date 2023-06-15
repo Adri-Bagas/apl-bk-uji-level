@@ -49,6 +49,7 @@
                             <select class="form-select" name="roles[]" id="roles" multiple>
                                 <option value="bk" {{ in_array("bk", $roles) ? 'selected' : '' }}>BK</option>
                                 <option value="walas" {{ in_array("walas", $roles) ? 'selected' : '' }}>Walas</option>
+                                <option value="admin" {{ in_array("admin", $roles) ? 'selected' : '' }}>Admin</option>
                           </select>
                       </div>
                   <table>

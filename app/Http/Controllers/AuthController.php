@@ -38,12 +38,12 @@ class AuthController extends Controller
                 'nama_guru' => $item->bk->user->name,
                 'tanggal' => $item->tanggal_konseling,
                 'waktu' => $item->waktu_konseling,
-                'tipeBimbingan' => $item->layananBK->,
-                ''
+                'tipeBimbingan' => $item->layananBK->jenis_layanan,
+                'urlImg' => $item->bk->fotos()->count() > 0 ? asset('storage/'.$item->bk->fotos()->first()->img_location) : 'https://static.wikia.nocookie.net/bokunoheroacademia/images/8/8f/Toru_Hagakure_Full_Body_Uniform.png/revision/latest?cb=20161230191807'
             ]);
         }
         return response()->json([
-            
+            'data' => $arr
         ]);
     }
 }

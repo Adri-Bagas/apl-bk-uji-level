@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\KelasController;
@@ -176,3 +177,5 @@ Route::middleware([
     Route::get('/walas/siswa/konseling', [WalasController::class, 'getAllDataSiswaFromKelas']);
 });
 
+Route::get('test-data',[ExportController::class, 'test_data']);
+Route::get('export', [ExportController::class, 'export']);
